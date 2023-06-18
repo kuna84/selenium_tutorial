@@ -1,0 +1,64 @@
+{% extends 'sel_tut_app/base.html' %}
+
+{% load static %}
+
+{% block title %}Playground - Selenium Tutorial{% endblock %}
+
+{% block heading %}Playground {% endblock %}
+
+{% block content %}
+
+<style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-gap: 10px;
+        margin: 30px;
+    }
+
+    .grid-button {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        background-color: #84C184;
+        color: #fff;
+        padding: 40px 20px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .grid-button:hover {
+        background-color: #72A672;
+    }
+</style>
+
+   <div class="grid-container">
+        <a class="grid-button" href="#">BUTTON 1</a>
+        <a class="grid-button" href="#">BUTTON 2</a>
+        <a class="grid-button" href="#">BUTTON 3</a>
+        <a class="grid-button" href="#">BUTTON 4</a>
+        <a class="grid-button" href="#">BUTTON 5</a>
+        <a class="grid-button" href="#">BUTTON 6</a>
+        <a class="grid-button" href="#">BUTTON 7</a>
+        <a class="grid-button" href="#">BUTTON 8</a>
+        <a class="grid-button" href="#">BUTTON 9</a>
+        <a class="grid-button" href="#">BUTTON 10</a>
+        <a class="grid-button" href="#">BUTTON 11</a>
+        <a class="grid-button" href="#">BUTTON 12</a>
+        <a class="grid-button" href="#">BUTTON 13</a>
+        <a class="grid-button" href="#">BUTTON 14</a>
+        <a class="grid-button" href="#">BUTTON 15</a>
+        <a class="grid-button" href="#">BUTTON 16</a>
+        <a class="grid-button" href="#">BUTTON 17</a>
+        <a class="grid-button" href="#">BUTTON 18</a>
+        <a class="grid-button" href="#">BUTTON 19</a>
+        <a class="grid-button" href="#">BUTTON 20</a>
+        <a class="grid-button" href="#">BUTTON 21</a>
+        <a class="grid-button" href="#">BUTTON 22</a>
+        <a class="grid-button" href="#">BUTTON 23</a>
+        <a class="grid-button" href="#">BUTTON 24</a>
+        <a class="grid-button" href="#">BUTTON 25</a>
+    </div>
+{% endblock %}
