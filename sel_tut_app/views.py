@@ -23,3 +23,23 @@ def playground_view(request):
 
 def contact_view(request):
     return render(request, 'sel_tut_app/contact.html')
+
+
+def text_formats_view(request):
+    return render(request, 'sel_tut_app/text_formats.html')
+
+
+def buttons_view(request):
+    return render(request, 'sel_tut_app/buttons.html')
+
+
+def messages_view(request):
+    return render(request, 'sel_tut_app/messages.html')
+
+
+def radio_checkbox_view(request):
+    return render(request, 'sel_tut_app/radio_checkbox.html')
+
+
+def sliders_view(request):
+    return render(request, 'sel_tut_app/sliders.html')

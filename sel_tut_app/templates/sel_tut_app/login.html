@@ -1,0 +1,114 @@
+{% extends 'sel_tut_app/base.html' %}
+
+{% block title %}Login - Selenium Tutorial{% endblock %}
+
+{% block heading %}Login to Your Account{% endblock %}
+
+{% block content %}
+<style>
+    .login-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    .login-form {
+        width: 300px;
+        margin-bottom: 20px;
+    }
+
+    .login-form input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .login-form .forgot-password {
+        font-size: 12px;
+        color: #888;
+        margin-bottom: 10px;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    .forgot-password-message {
+        display: none;
+        margin-top: 10px;
+        color: #888;
+    }
+
+    .forgot-password-message input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .forgot-password-message .buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+
+    .forgot-password-message .cancel-button,
+    .forgot-password-message .send-button {
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .forgot-password-message .send-button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+    }
+
+    .forgot-password-message .send-button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+</style>
+
+<div class="login-container">
+    <h1>Login to Your Account</h1>
+
+    <form class="login-form" action="" method="POST">
+        <input type="email" id="email" name="email" placeholder="Email: Enter your email address" required>
+        <input type="password" id="password" name="password" placeholder="Password" required>
+
+        <div class="forgot-password-section">
+            <a href="#" class="forgot-password">Forgot your password?</a>
+            <div class="forgot-password-message">
+                <input type="email" id="forgot-email" name="forgot-email" placeholder="Enter your email address" required>
+                <div class="buttons">
+                    <button type="button" class="cancel-button">Cancel</button>
+                    <button type="submit" class="send-button" disabled>Send</button>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="login-button">LOGIN</button>
+    </form>
+</div>
+
+<script>
+    const forgotPasswordLink = document.querySelector('.forgot-password');
+    const forgotPasswordMessage = document.querySelector('.forgot-password-message');
+    const forgotEmailInput = document.querySelector('#forgot-email');
+    const cancelButton = document.querySelector('.cancel-button');
+    const sendButton = document.querySelector('.send-button');
+
+    forgotPasswordLink.addEventListener('click', () => {
+        forgotPasswordMessage.style.display = 'block';
+        forgotEmailInput.value = '';
+        sendButton.disabled = true;
+    });
+
+    cancelButton.addEventListener('click', () => {
+        forgotPasswordMessage.style.display = 'none';
+    });
+
+    forgotEmailInput.addEventListener('input', () => {
+        const emailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        sendButton.disabled = !emailFormat.test(forgotEmailInput.value);
+    });
+</script>
+{% endblock %}

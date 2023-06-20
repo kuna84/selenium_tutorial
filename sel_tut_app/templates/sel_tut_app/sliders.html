@@ -1,0 +1,87 @@
+{% extends 'sel_tut_app/base.html' %}
+
+{% load static %}
+
+{% block title %}Sliders - Selenium Tutorial{% endblock %}
+
+{% block heading %}Sliders{% endblock %}
+
+{% block content %}
+
+<style>
+    .button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .button-container button {
+        display: flex;
+        margin: 10px;
+    }
+</style>
+
+<h1>Sliders</h1>
+
+<div class="slider-container">
+    <label for="slider1">Slider 1 (0-10): </label>
+    <input type="range" id="slider1" class="slider" min="0" max="10">
+    <span class="slider-value" id="slider1-value">5</span>
+</div>
+
+<div class="slider-container">
+    <label for="slider2">Slider 2 (0-100): </label>
+    <input type="range" id="slider2" class="slider" min="0" max="100">
+    <span class="slider-value" id="slider2-value">0</span>
+</div>
+
+<div class="slider-container">
+    <label for="slider3">Slider 3 (0-1000): </label>
+    <input type="range" id="slider3" class="slider" min="0" max="1000">
+    <span class="slider-value" id="slider3-value">0</span>
+    <input type="number" id="slider3-input" class="slider-value" min="0" max="1000" step="1">
+    <button onclick="setSliderValue('slider3', 'slider3-input')">Set</button>
+</div>
+
+<div class="slider-container">
+    <label for="slider4">Slider 4 (0-255): </label>
+    <input type="range" id="slider4" class="slider" min="0" max="255" step="5">
+    <span class="slider-value" id="slider4-value">0</span>
+</div>
+
+
+
+<script>
+    function setSliderValue(sliderId, inputId) {
+        const slider = document.getElementById(sliderId);
+        const input = document.getElementById(inputId);
+        const value = parseInt(input.value);
+        slider.value = value;
+        updateSliderValue(sliderId);
+    }
+
+    function updateSliderValue(sliderId) {
+        const slider = document.getElementById(sliderId);
+        const value = document.getElementById(sliderId + "-value");
+        value.textContent = slider.value;
+    }
+
+    const sliders = document.querySelectorAll('.slider');
+    sliders.forEach(slider => {
+        slider.addEventListener('input', () => {
+        updateSliderValue(slider.id);
+        });
+    });
+</script>
+
+<div class="button-container">
+<button class="button" onclick="goToPlayground()">Back</button>
+</div>
+
+<script>
+    function goToPlayground() {
+        window.location.href = "{% url 'sel_tut_app:playground' %}";
+    }
+</script>
+
+{% endblock %}

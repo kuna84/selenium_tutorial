@@ -12,6 +12,11 @@ urlpatterns = [
     path('page-object/', views.page_object_view, name='page_object'),
     path('playground/', views.playground_view, name='playground'),
     path('contact/', views.contact_view, name='contact'),
+    path('text-formats/', views.text_formats_view, name='text_formats'),
+    path('buttons/', views.buttons_view, name='buttons'),
+    path('messages/', views.messages_view, name='messages'),
+    path('radio-checkbox/', views.radio_checkbox_view, name='radio_checkbox'),
+    path('sliders/', views.sliders_view, name='sliders'),
 ]
 
 if settings.DEBUG:
