@@ -17,6 +17,8 @@ urlpatterns = [
     path('messages/', views.messages_view, name='messages'),
     path('radio-checkbox/', views.radio_checkbox_view, name='radio_checkbox'),
     path('sliders/', views.sliders_view, name='sliders'),
+    path('login/', views.login_view, name='login'),
+    path('my-account/', views.my_account_view, name='my_account'),
 ]
 
 if settings.DEBUG:

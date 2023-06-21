@@ -43,3 +43,11 @@ def radio_checkbox_view(request):
 
 def sliders_view(request):
     return render(request, 'sel_tut_app/sliders.html')
+
+
+def login_view(request):
+    return render(request, 'sel_tut_app/login.html')
+
+
+def my_account_view(request):
+    return render(request, 'sel_tut_app/myaccount.html')

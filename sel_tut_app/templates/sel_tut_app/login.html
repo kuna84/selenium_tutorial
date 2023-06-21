@@ -1,114 +1,166 @@
-{% extends 'sel_tut_app/base.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - Your Account</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
 
-{% block title %}Login - Selenium Tutorial{% endblock %}
+        .login-container {
+            text-align: center;
+            background-color: #f2f2f2;
+            padding: 20px;
+            border-radius: 15px;
+        }
 
-{% block heading %}Login to Your Account{% endblock %}
+        .login-heading {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
 
-{% block content %}
-<style>
-    .login-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-    }
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    .login-form {
-        width: 300px;
-        margin-bottom: 20px;
-    }
+        .form-input {
+            width: 200px;
+            margin-bottom: 10px;
+            padding: 5px;
+            border-radius: 15px;
+            border: 1px solid #ccc;
+        }
 
-    .login-form input {
-        width: 100%;
-        margin-bottom: 10px;
-    }
+        .forgot-password {
+            font-size: 12px;
+            color: #007bff;
+            text-decoration: underline;
+            margin-bottom: 10px;
+            cursor: pointer;
+            text-align: right;
+        }
 
-    .login-form .forgot-password {
-        font-size: 12px;
-        color: #888;
-        margin-bottom: 10px;
-        text-decoration: underline;
-        cursor: pointer;
-    }
+        .login-button {
+            width: 200px;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 15px;
+            background-color: #ccc;
+            color: #fff;
+            border: none;
+            cursor: not-allowed;
+        }
 
-    .forgot-password-message {
-        display: none;
-        margin-top: 10px;
-        color: #888;
-    }
+        .login-button.active {
+            background-color: #007bff;
+            cursor: pointer;
+        }
 
-    .forgot-password-message input {
-        width: 100%;
-        margin-bottom: 10px;
-    }
+        .forgot-password-container {
+            display: none;
+            margin-top: 10px;
+            text-align: center;
+        }
 
-    .forgot-password-message .buttons {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 10px;
-    }
+        .forgot-password-input {
+            width: 200px;
+            margin-bottom: 10px;
+            padding: 5px;
+            border-radius: 15px;
+            border: 1px solid #ccc;
+        }
 
-    .forgot-password-message .cancel-button,
-    .forgot-password-message .send-button {
-        padding: 10px;
-        cursor: pointer;
-    }
+        .send-button {
+            padding: 5px 15px;
+            border-radius: 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
 
-    .forgot-password-message .send-button {
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-    }
+        .cancel-button {
+            padding: 5px 15px;
+            border-radius: 15px;
+            background-color: #ccc;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1 class="login-heading">Login to Your Account</h1>
 
-    .forgot-password-message .send-button:disabled {
-        background-color: #ccc;
-        cursor: not-allowed;
-    }
-</style>
+        <form class="login-form">
+            <input class="form-input" type="email" id="email" name="email" placeholder="Email" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$">
+            <input class="form-input" type="password" id="password" name="password" placeholder="Password" required>
 
-<div class="login-container">
-    <h1>Login to Your Account</h1>
+            <div class="forgot-password" onclick="showForgotPassword()">Forgot Password?</div>
 
-    <form class="login-form" action="" method="POST">
-        <input type="email" id="email" name="email" placeholder="Email: Enter your email address" required>
-        <input type="password" id="password" name="password" placeholder="Password" required>
+            <button class="login-button" id="login-button" type="button" disabled>Login</button>
 
-        <div class="forgot-password-section">
-            <a href="#" class="forgot-password">Forgot your password?</a>
-            <div class="forgot-password-message">
-                <input type="email" id="forgot-email" name="forgot-email" placeholder="Enter your email address" required>
-                <div class="buttons">
-                    <button type="button" class="cancel-button">Cancel</button>
-                    <button type="submit" class="send-button" disabled>Send</button>
-                </div>
+            <div class="forgot-password-container" id="forgot-password-container">
+                <input class="forgot-password-input" type="email" id="forgot-email" name="forgot-email" placeholder="Enter your email address" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$">
+                <button class="send-button" type="button" onclick="sendForgotPassword()">Send</button>
+                <button class="cancel-button" type="button" onclick="cancelForgotPassword()">Cancel</button>
             </div>
-        </div>
+        </form>
+    </div>
 
-        <button type="submit" class="login-button">LOGIN</button>
-    </form>
-</div>
-
-<script>
-    const forgotPasswordLink = document.querySelector('.forgot-password');
-    const forgotPasswordMessage = document.querySelector('.forgot-password-message');
-    const forgotEmailInput = document.querySelector('#forgot-email');
-    const cancelButton = document.querySelector('.cancel-button');
-    const sendButton = document.querySelector('.send-button');
-
-    forgotPasswordLink.addEventListener('click', () => {
-        forgotPasswordMessage.style.display = 'block';
-        forgotEmailInput.value = '';
-        sendButton.disabled = true;
-    });
-
-    cancelButton.addEventListener('click', () => {
-        forgotPasswordMessage.style.display = 'none';
-    });
-
-    forgotEmailInput.addEventListener('input', () => {
+    <script>
+        const loginButton = document.getElementById('login-button');
+        const forgotPasswordContainer = document.getElementById('forgot-password-container');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
         const emailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        sendButton.disabled = !emailFormat.test(forgotEmailInput.value);
-    });
-</script>
-{% endblock %}
+
+        function showForgotPassword() {
+            forgotPasswordContainer.style.display = 'block';
+            loginButton.disabled = true;
+        }
+
+        function cancelForgotPassword() {
+            forgotPasswordContainer.style.display = 'none';
+            loginButton.disabled = false;
+        }
+
+        function sendForgotPassword() {
+            const forgotEmailInput = document.getElementById('forgot-email');
+            if (emailFormat.test(forgotEmailInput.value)) {
+                alert('Forgot password email sent!');
+                forgotEmailInput.value = '';
+                cancelForgotPassword();
+            } else {
+                alert('Invalid email format!');
+            }
+        }
+
+        function checkLoginInputs() {
+            if (emailFormat.test(emailInput.value) && passwordInput.value !== '') {
+                loginButton.classList.add('active');
+                loginButton.disabled = false;
+            } else {
+                loginButton.classList.remove('active');
+                loginButton.disabled = true;
+            }
+        }
+
+        emailInput.addEventListener('input', checkLoginInputs);
+        passwordInput.addEventListener('input', checkLoginInputs);
+
+        loginButton.addEventListener('click', () => {
+            if (emailFormat.test(emailInput.value) && passwordInput.value !== '') {
+                window.location.href = '/my-account';
+            }
+        });
+    </script>
+</body>
+</html>
