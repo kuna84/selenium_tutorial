@@ -1,0 +1,141 @@
+{% load static %}
+
+<html>
+<head>
+    <title>Text Fields</title>
+    <style>
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            display: flex;
+            align-items: center;
+            height: 70px;
+            background-color: #C1F2D4;
+            margin-bottom: 50px;
+            z-index: 1;
+        }
+
+        .header h1 {
+            flex: 1;
+            text-align: center;
+        }
+
+        .text-field-container {
+            text-align: left;
+            background-color: #f2f2f2;
+            padding: 20px;
+            border-radius: 15px;
+            width: 400px;
+            margin-top: 20px;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .text-field {
+            margin-bottom: 20px;
+        }
+
+        .text-field label {
+            font-weight: bold;
+        }
+
+        .text-field input:not([type="color"]) {
+            width: 100%;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .text-field input[type="color"] {
+            width: 30px;
+            height: 30px;
+            padding: 0;
+        }
+
+        .button-container {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .button-container button {
+            display: flex;
+            margin: 10px;
+        }
+
+        .home-link {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <a href="/" class="back-link">
+                <img src="{% static 'images/home.png' %}" alt="Back to Main Page" width="40" height="40" class="home-link">
+            </a>
+        </div>
+        <h1>Text Fields</h1>
+    </div>
+
+    <div class="text-field-container">
+        <div class="text-field">
+            <label for="name-field">Text Field:<br></label>
+            <input type="text" id="name-field" name="name-field">
+        </div>
+        <div class="text-field">
+            <label for="email-field">Email:<br></label>
+            <input type="email" id="email-field" name="email-field">
+        </div>
+        <div class="text-field">
+            <label for="phone-field">Phone Number:<br></label>
+            <input type="tel" id="phone-field" name="phone-field">
+        </div>
+        <div class="text-field">
+            <label for="address-field">Address:<br></label>
+            <input type="text" id="address-field" name="address-field">
+        </div>
+        <div class="text-field">
+            <label for="password-field">Password:<br></label>
+            <input type="password" id="password-field" name="password-field">
+        </div>
+        <div class="text-field">
+            <label for="date-field">Date:<br></label>
+            <input type="date" id="date-field" name="date-field">
+        </div>
+        <div class="text-field">
+            <label for="number-field">Number:<br></label>
+            <input type="number" id="number-field" name="number-field">
+        </div>
+        <div class="text-field">
+            <label for="url-field">URL:<br></label>
+            <input type="url" id="url-field" name="url-field">
+        </div>
+        <div class="text-field">
+            <label for="search-field">Search:<br></label>
+            <input type="search" id="search-field" name="search-field">
+        </div>
+        <div class="text-field">
+            <label for="color-field">Color Picker:<br></label>
+            <input type="color" id="color-field" name="color-field">
+        </div>
+    </div>
+
+    <div class="button-container">
+        <button class="button back-button" onclick="goToPlayground()">Back</button>
+    </div>
+
+    <script>
+        function goToPlayground() {
+            window.location.href = "{% url 'sel_tut_app:playground' %}";
+        }
+    </script>
+</body>
+</html>

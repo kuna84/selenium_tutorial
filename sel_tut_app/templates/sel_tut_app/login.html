@@ -1,24 +1,44 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Login - Your Account</title>
     <style>
-        body {
+         body {
+            font-family: Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
             display: flex;
             align-items: center;
-            justify-content: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;
+            height: 70px;
+            background-color: #C1F2D4;
+            margin-bottom: 50px;
+            z-index: 1;
+        }
+
+        .header h1 {
+            flex: 1;
+            text-align: center;
         }
 
         .login-container {
-            text-align: center;
             background-color: #f2f2f2;
             padding: 20px;
             border-radius: 15px;
+            margin-bottom: 50px;
+            width: 400px;
+            justify-content: center;
+            margin: 0 auto;
         }
 
         .login-heading {
+            text-align: center;
             font-size: 24px;
             margin-bottom: 20px;
         }
@@ -93,11 +113,36 @@
             border: none;
             cursor: pointer;
         }
+
+        .button-container {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .button-container button {
+            display: flex;
+            margin: 10px;
+        }
+
+        .home-link {
+            margin-left: 5px;
+        }
+
     </style>
 </head>
 <body>
+     <div class="header">
+         <div>
+            <a href="/" class="back-link">
+                <img src="{% static 'images/home.png' %}" alt="Back to Main Page" width="40" height="40" class="home-link">
+            </a>
+        </div>
+        <h1>Log in to Your Account</h1>
+    </div>
+
     <div class="login-container">
-        <h1 class="login-heading">Login to Your Account</h1>
 
         <form class="login-form">
             <input class="form-input" type="email" id="email" name="email" placeholder="Email" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$">
@@ -161,6 +206,17 @@
                 window.location.href = '/my-account';
             }
         });
+
     </script>
+    <div class="button-container">
+        <button class="button back-button" onclick="goToPlayground()">Back</button>
+    </div>
+
+    <script>
+        function goToPlayground() {
+            window.location.href = "{% url 'sel_tut_app:playground' %}";
+        }
+    </script>
+
 </body>
 </html>

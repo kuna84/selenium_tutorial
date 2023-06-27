@@ -19,6 +19,7 @@ urlpatterns = [
     path('sliders/', views.sliders_view, name='sliders'),
     path('login/', views.login_view, name='login'),
     path('my-account/', views.my_account_view, name='my_account'),
+    path('text-fields/', views.text_fields, name='text_fields'),
 ]
 
 if settings.DEBUG:

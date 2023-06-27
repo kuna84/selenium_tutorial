@@ -51,3 +51,7 @@ def login_view(request):
 
 def my_account_view(request):
     return render(request, 'sel_tut_app/myaccount.html')
+
+
+def text_fields(request):
+    return render(request, 'sel_tut_app/text_fields.html')
