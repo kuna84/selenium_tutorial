@@ -1,146 +1,100 @@
-{% load static %}
+{% extends 'sel_tut_app/playground_base.html' %}
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login - Your Account</title>
-    <style>
-         body {
-            font-family: Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+{% block title %}Login - Selenium Tutorial{% endblock %}
 
-        .header {
-            position: sticky;
-            top: 0;
-            display: flex;
-            align-items: center;
-            height: 70px;
-            background-color: #C1F2D4;
-            margin-bottom: 50px;
-            z-index: 1;
-        }
+{% block heading %}Log In to Your Account{% endblock %}
 
-        .header h1 {
-            flex: 1;
-            text-align: center;
-        }
+{% block content %}
 
-        .login-container {
-            background-color: #f2f2f2;
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 50px;
-            width: 400px;
-            justify-content: center;
-            margin: 0 auto;
-        }
+<style>
+    .login-container {
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 15px;
+        margin-bottom: 50px;
+        width: 400px;
+        justify-content: center;
+        margin: 0 auto;
+    }
 
-        .login-heading {
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
+    .login-heading {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
 
-        .login-form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    .login-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-        .form-input {
-            width: 200px;
-            margin-bottom: 10px;
-            padding: 5px;
-            border-radius: 15px;
-            border: 1px solid #ccc;
-        }
+    .form-input {
+        width: 200px;
+        margin-bottom: 10px;
+        padding: 5px;
+        border-radius: 15px;
+        border: 1px solid #ccc;
+    }
 
-        .forgot-password {
-            font-size: 12px;
-            color: #007bff;
-            text-decoration: underline;
-            margin-bottom: 10px;
-            cursor: pointer;
-            text-align: right;
-        }
+    .forgot-password {
+        font-size: 12px;
+        color: #007bff;
+        text-decoration: underline;
+        margin-bottom: 10px;
+        cursor: pointer;
+        text-align: right;
+    }
 
-        .login-button {
-            width: 200px;
-            padding: 10px;
-            margin-top: 20px;
-            border-radius: 15px;
-            background-color: #ccc;
-            color: #fff;
-            border: none;
-            cursor: not-allowed;
-        }
+    .login-button {
+        width: 200px;
+        padding: 10px;
+        margin-top: 20px;
+        border-radius: 15px;
+        background-color: #ccc;
+        color: #fff;
+        border: none;
+        cursor: not-allowed;
+    }
 
-        .login-button.active {
-            background-color: #007bff;
-            cursor: pointer;
-        }
+    .login-button.active {
+        background-color: #007bff;
+        cursor: pointer;
+    }
 
-        .forgot-password-container {
-            display: none;
-            margin-top: 10px;
-            text-align: center;
-        }
+    .forgot-password-container {
+        display: none;
+        margin-top: 10px;
+        text-align: center;
+    }
 
-        .forgot-password-input {
-            width: 200px;
-            margin-bottom: 10px;
-            padding: 5px;
-            border-radius: 15px;
-            border: 1px solid #ccc;
-        }
+    .forgot-password-input {
+        width: 200px;
+        margin-bottom: 10px;
+        padding: 5px;
+        border-radius: 15px;
+        border: 1px solid #ccc;
+    }
 
-        .send-button {
-            padding: 5px 15px;
-            border-radius: 15px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        }
+    .send-button {
+        padding: 5px 15px;
+        border-radius: 15px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
 
-        .cancel-button {
-            padding: 5px 15px;
-            border-radius: 15px;
-            background-color: #ccc;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        }
+    .cancel-button {
+        padding: 5px 15px;
+        border-radius: 15px;
+        background-color: #ccc;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+</style>
 
-        .button-container {
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .button-container button {
-            display: flex;
-            margin: 10px;
-        }
-
-        .home-link {
-            margin-left: 5px;
-        }
-
-    </style>
-</head>
-<body>
-     <div class="header">
-         <div>
-            <a href="/" class="back-link">
-                <img src="{% static 'images/home.png' %}" alt="Back to Main Page" width="40" height="40" class="home-link">
-            </a>
-        </div>
-        <h1>Log in to Your Account</h1>
-    </div>
 
     <div class="login-container">
 
@@ -160,63 +114,52 @@
         </form>
     </div>
 
-    <script>
-        const loginButton = document.getElementById('login-button');
-        const forgotPasswordContainer = document.getElementById('forgot-password-container');
-        const emailInput = document.getElementById('email');
-        const passwordInput = document.getElementById('password');
-        const emailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+<script>
+    const loginButton = document.getElementById('login-button');
+    const forgotPasswordContainer = document.getElementById('forgot-password-container');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const emailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        function showForgotPassword() {
-            forgotPasswordContainer.style.display = 'block';
+    function showForgotPassword() {
+        forgotPasswordContainer.style.display = 'block';
+        loginButton.disabled = true;
+    }
+
+    function cancelForgotPassword() {
+        forgotPasswordContainer.style.display = 'none';
+        loginButton.disabled = false;
+    }
+
+    function sendForgotPassword() {
+        const forgotEmailInput = document.getElementById('forgot-email');
+        if (emailFormat.test(forgotEmailInput.value)) {
+            alert('Forgot password email sent!');
+            forgotEmailInput.value = '';
+            cancelForgotPassword();
+        } else {
+            alert('Invalid email format!');
+        }
+    }
+
+    function checkLoginInputs() {
+        if (emailFormat.test(emailInput.value) && passwordInput.value !== '') {
+            loginButton.classList.add('active');
+            loginButton.disabled = false;
+        } else {
+            loginButton.classList.remove('active');
             loginButton.disabled = true;
         }
+    }
 
-        function cancelForgotPassword() {
-            forgotPasswordContainer.style.display = 'none';
-            loginButton.disabled = false;
+    emailInput.addEventListener('input', checkLoginInputs);
+    passwordInput.addEventListener('input', checkLoginInputs);
+
+    loginButton.addEventListener('click', () => {
+        if (emailFormat.test(emailInput.value) && passwordInput.value !== '') {
+            window.location.href = '/my-account';
         }
+    });
+</script>
 
-        function sendForgotPassword() {
-            const forgotEmailInput = document.getElementById('forgot-email');
-            if (emailFormat.test(forgotEmailInput.value)) {
-                alert('Forgot password email sent!');
-                forgotEmailInput.value = '';
-                cancelForgotPassword();
-            } else {
-                alert('Invalid email format!');
-            }
-        }
-
-        function checkLoginInputs() {
-            if (emailFormat.test(emailInput.value) && passwordInput.value !== '') {
-                loginButton.classList.add('active');
-                loginButton.disabled = false;
-            } else {
-                loginButton.classList.remove('active');
-                loginButton.disabled = true;
-            }
-        }
-
-        emailInput.addEventListener('input', checkLoginInputs);
-        passwordInput.addEventListener('input', checkLoginInputs);
-
-        loginButton.addEventListener('click', () => {
-            if (emailFormat.test(emailInput.value) && passwordInput.value !== '') {
-                window.location.href = '/my-account';
-            }
-        });
-
-    </script>
-    <div class="button-container">
-        <button class="button back-button" onclick="goToPlayground()">Back</button>
-    </div>
-
-    <script>
-        function goToPlayground() {
-            window.location.href = "{% url 'sel_tut_app:playground' %}";
-        }
-    </script>
-
-</body>
-</html>
+{% endblock %}

@@ -1,4 +1,4 @@
-{% extends 'sel_tut_app/base.html' %}
+{% extends 'sel_tut_app/playground_base.html' %}
 
 {% load static %}
 
@@ -7,14 +7,15 @@
 {% block heading %}Buttons{% endblock %}
 
 {% block content %}
+
     <style>
         .button-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(5, 1fr);
             grid-gap: 10px;
         }
 
-        .button {
+        .buttons {
             display: inline-block;
             padding: 10px 20px;
             border-radius: 5px;
@@ -86,23 +87,23 @@
     <H2>Clicking on any of the buttons below will navigate you back to the Playground.</H2>
 
     <div class="button-grid">
-        <a class="button primary-button" href="#" onclick="history.back()">Primary Button</a>
-        <a class="button secondary-button" href="#" onclick="history.back()">Secondary Button</a>
-        <a class="button success-button" href="#" onclick="history.back()">Success Button</a>
-        <a class="button warning-button" href="#" onclick="history.back()" id="random-button-1">Warning Button</a>
-        <a class="button danger-button" href="#" onclick="history.back()" id="random-button-2">Danger Button</a>
-        <a class="button info-button" href="#" onclick="history.back()">Info Button</a>
-        <a class="button disabled-button" href="#" onclick="history.back()">Disabled Button</a>
-        <a class="button rounded-button" href="#" onclick="history.back()" id="random-button-3">Rounded Button</a>
-        <a class="button large-button" href="#" onclick="history.back()">Large Button</a>
-        <a class="button small-button" href="#" onclick="history.back()">Small Button</a>
-        <a class="button gradient-button" href="#" onclick="history.back()">Gradient Button</a>
-        <a class="button outline-button" href="#" onclick="history.back()">Outline Button</a>
-        <a class="button icon-button" href="#" onclick="history.back()">
+        <a class="buttons primary-button" href="#" onclick="history.back()">Primary Button</a>
+        <a class="buttons secondary-button" href="#" onclick="history.back()">Secondary Button</a>
+        <a class="buttons success-button" href="#" onclick="history.back()">Success Button</a>
+        <a class="buttons warning-button" href="#" onclick="history.back()" id="random-button-1">Warning Button</a>
+        <a class="buttons danger-button" href="#" onclick="history.back()" id="random-button-2">Danger Button</a>
+        <a class="buttons info-button" href="#" onclick="history.back()">Info Button</a>
+        <a class="buttons disabled-button" href="#" onclick="history.back()">Disabled Button</a>
+        <a class="buttons rounded-button" href="#" onclick="history.back()" id="random-button-3">Rounded Button</a>
+        <a class="buttons large-button" href="#" onclick="history.back()">Large Button</a>
+        <a class="buttons small-button" href="#" onclick="history.back()">Small Button</a>
+        <a class="buttons gradient-button" href="#" onclick="history.back()">Gradient Button</a>
+        <a class="buttons outline-button" href="#" onclick="history.back()">Outline Button</a>
+        <a class="buttons icon-button" href="#" onclick="history.back()">
             <img class="icon" src="{% static 'images/button_1.png' %}" id="next_button"></a>
-        <button class="button submit-button" type="submit" onclick="history.back()">Submit Button</button>
-        <button class="button reset-button" type="reset" onclick="history.back()">Reset Button</button>
-        <button class="button button-primary" disabled onclick="history.back()">Disabled Button</button>
+        <button class="buttons submit-button" type="submit" onclick="history.back()">Submit Button</button>
+        <button class="buttons reset-button" type="reset" onclick="history.back()">Reset Button</button>
+        <button class="buttons button-primary" disabled onclick="history.back()">Disabled Button</button>
     </div>
 </div>
 

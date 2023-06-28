@@ -1,62 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-    <style>
-        body {
-            font-family: Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+{% extends 'sel_tut_app/playground_base.html' %}
 
-        .header {
-            position: sticky;
-            top: 0;
-            display: flex;
-            align-items: center;
-            height: 70px;
-            background-color: #C1F2D4;
-            margin-bottom: 5px;
-            z-index: 1;
-        }
+{% block title %}My Account - Selenium Tutorial{% endblock %}
 
-        .header h1 {
-            flex: 1;
-            text-align: center;
-        }
+{% block heading %}My Account{% endblock %}
 
-        .button-container {
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+{% block content %}
 
-        .button-container button {
-            display: flex;
-            margin: 10px;
-        }
+<div class="text-container">
+    <p>Logged In</p>
+</div>
 
-    </style>
-<head>
-    <meta charset="UTF-8">
-    <title>My Account</title>
-</head>
-<body>
-    <div class="header">
-        <h1>My Account</h1>
-    </div>
-
-    <div class="text-container">
-        <p>Logged In</p>
-    </div>
-
-    <div class="button-container">
-        <button class="button back-button" onclick="goToPlayground()">Back</button>
-    </div>
-
-    <script>
-        function goToPlayground() {
-            window.location.href = "{% url 'sel_tut_app:playground' %}";
-        }
-    </script>
-</body>
-</html>
+{% endblock %}

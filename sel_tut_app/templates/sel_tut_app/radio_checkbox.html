@@ -1,29 +1,12 @@
-<!DOCTYPE html>
-<html>
+{% extends 'sel_tut_app/playground_base.html' %}
+
+{% block title %}Radio Buttons & Checkboxes - Selenium Tutorial{% endblock %}
+
+{% block heading %}Radio Buttons & Checkboxes{% endblock %}
+
+{% block content %}
 
 <style>
-    body {
-        font-family: Helvetica, Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-    }
-
-    .header {
-        position: sticky;
-        top: 0;
-        display: flex;
-        align-items: center;
-        height: 70px;
-        background-color: #C1F2D4;
-        margin-bottom: 5px;
-        z-index: 1;
-    }
-
-    .header h1 {
-        flex: 1;
-        text-align: center;
-    }
-
     .radio-checkbox-container {
         display: flex;
         flex-direction: column;
@@ -59,10 +42,6 @@
         cursor: pointer;
     }
 </style>
-
-<div class="header">
-    <h1>Radio Buttons and Checkboxes</h1>
-</div>
 
 <div class="radio-checkbox-container">
     <div class="question">
@@ -118,3 +97,4 @@
     }
 </script>
 
+{% endblock %}

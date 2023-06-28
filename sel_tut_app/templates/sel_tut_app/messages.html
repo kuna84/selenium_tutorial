@@ -1,174 +1,127 @@
+{% extends 'sel_tut_app/playground_base.html' %}
+
 {% load static %}
-<html>
-<head>
-    <style>
-         body {
-            font-family: Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
+
+{% block title %}Messages - Selenium Tutorial{% endblock %}
+
+{% block heading %}Messages{% endblock %}
+
+{% block content %}
+
+<style>
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .alert-button {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    .confirm-button {
+        background-color: #6c757d;
+        color: #fff;
+    }
+
+    .prompt-button {
+        background-color: #28a745;
+        color: #fff;
+    }
+
+    .toast-button {
+        background-color: #ffc107;
+        color: #000;
+    }
+
+    .modal-button {
+        background-color: #dc3545;
+        color: #fff;
+    }
+</style>
+
+<div class="button-container">
+    <button class="button alert-button" id="1" onclick="showAlert()">Alert</button>
+    <button class="button confirm-button" id="2" onclick="showConfirm()">Confirm</button>
+    <button class="button prompt-button" id="3" onclick="showPrompt()">Prompt</button>
+    <button class="button toast-button" id="4" onclick="showToast()">Toast</button>
+    <button class="button modal-button" id="5" onclick="showModal()">Modal</button>
+</div>
+
+<!-- Include Toastify CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+<!-- Include Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    function showAlert() {
+        alert("This is an example alert!");
+    }
+
+    function showConfirm() {
+        var result = confirm("Are you sure you want to perform this action?");
+        if (result) {
+            alert("Confirmed!");
+        } else {
+            alert("Cancelled!");
         }
+    }
 
-        .header {
-            position: sticky;
-            top: 0;
-            display: flex;
-            align-items: center;
-            height: 70px;
-            background-color: #C1F2D4;
-            margin-bottom: 50px;
-            z-index: 1;
+    function showPrompt() {
+        var value = prompt("Enter your name:");
+        if (value) {
+            alert("Hello, " + value + "!");
+        } else {
+            alert("No name entered!");
         }
+    }
 
-        .header h1 {
-            flex: 1;
-            text-align: center;
-        }
+    function showToast() {
+        Toastify({
+            text: "This is a toast notification!",
+            duration: 3000,
+            close: true,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "#17a2b8",
+            stopOnFocus: true
+        }).showToast();
+    }
 
-        .button-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
+    function showModal() {
+        $('#myModal').modal('show');
+    }
+</script>
 
-        .button-container button {
-            display: flex;
-            margin: 10px;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 16px;
-            text-align: center;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .alert-button {
-            background-color: #007bff;
-            color: #fff;
-        }
-
-        .confirm-button {
-            background-color: #6c757d;
-            color: #fff;
-        }
-
-        .prompt-button {
-            background-color: #28a745;
-            color: #fff;
-        }
-
-        .toast-button {
-            background-color: #ffc107;
-            color: #000;
-        }
-
-        .modal-button {
-            background-color: #dc3545;
-            color: #fff;
-        }
-    </style>
-</head>
-
-<body>
-     <div class="header">
-         <div>
-            <a href="/" class="back-link">
-                <img src="{% static 'images/home.png' %}" alt="Back to Main Page" width="40" height="40" class="home-link">
-            </a>
-        </div>
-        <h1>Messages</h1>
-    </div>
-
-    <div class="button-container">
-        <button class="button alert-button" id="1" onclick="showAlert()">Alert</button>
-        <button class="button confirm-button" id="2" onclick="showConfirm()">Confirm</button>
-        <button class="button prompt-button" id="3" onclick="showPrompt()">Prompt</button>
-        <button class="button toast-button" id="4" onclick="showToast()">Toast</button>
-        <button class="button modal-button" id="5" onclick="showModal()">Modal</button>
-    </div>
-
-    <!-- Include Toastify CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-
-    <!-- Include Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <script>
-        function showAlert() {
-            alert("This is an example alert!");
-        }
-
-        function showConfirm() {
-            var result = confirm("Are you sure you want to perform this action?");
-            if (result) {
-                alert("Confirmed!");
-            } else {
-                alert("Cancelled!");
-            }
-        }
-
-        function showPrompt() {
-            var value = prompt("Enter your name:");
-            if (value) {
-                alert("Hello, " + value + "!");
-            } else {
-                alert("No name entered!");
-            }
-        }
-
-        function showToast() {
-            Toastify({
-                text: "This is a toast notification!",
-                duration: 3000,
-                close: true,
-                gravity: "top",
-                position: "right",
-                backgroundColor: "#17a2b8",
-                stopOnFocus: true
-            }).showToast();
-        }
-
-        function showModal() {
-            $('#myModal').modal('show');
-        }
-    </script>
-
-    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Example Modal</h5>
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>This is an example modal dialog.</p>
-                    <p>You can customize its content and appearance.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Example Modal</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>This is an example modal dialog.</p>
+                <p>You can customize its content and appearance.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="button-container">
-    <button class="button back-button" onclick="goToPlayground()">Back</button>
-    </div>
-
-    <script>
-        function goToPlayground() {
-            window.location.href = "{% url 'sel_tut_app:playground' %}";
-        }
-    </script>
-</body>
-</html>
+{% endblock %}

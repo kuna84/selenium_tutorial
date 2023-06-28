@@ -2,9 +2,9 @@
 
 <html>
 <head>
-    <title>{% block title %}Selenium Tutorial{% endblock %}</title>
+    <title>{% block title %}Playground base{% endblock %}</title>
     <style>
-        body {
+         body {
             font-family: Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -17,7 +17,7 @@
             align-items: center;
             height: 70px;
             background-color: #C1F2D4;
-            margin-bottom: 5px;
+            margin-bottom: 50px;
             z-index: 1;
         }
 
@@ -26,30 +26,21 @@
             text-align: center;
         }
 
-        .nav-links {
+        .content {
+            padding: 20px;
+        }
+
+
+        .back-button-container {
+            position: fixed;
+            bottom: 25;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .back-button-container button {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: transparent;
-            padding: 10px 0;
-            margin-bottom: 5px;
-            z-index: 1;
-        }
-
-        .nav-links a:not(.back-link) {
-            display: inline-block;
-            font-weight: bold;
-            text-decoration: none;
-            color: #fff;
-            background-color: #333;
-            padding: 10px 20px;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-            margin: 0 10px;
-        }
-
-        .nav-links a:not(.back-link):hover {
-            background-color: #555;
+            margin: 10px;
         }
 
         footer {
@@ -64,10 +55,6 @@
             padding: 0;
             text-align: center;
             justify-content: center;
-        }
-
-        .content {
-            padding: 20px;
         }
 
         .footer-content {
@@ -90,26 +77,28 @@
 </head>
 <body>
     <div class="header">
-        <div>
+         <div>
             <a href="/" class="back-link">
                 <img src="{% static 'images/home.png' %}" alt="Back to Main Page" width="40" height="40" class="home-link">
             </a>
         </div>
-        <h1>{% block heading %}Selenium Tutorial{% endblock %}</h1>
-    </div>
-
-    <div class="nav-links">
-        <a href="{% url 'sel_tut_app:about_selenium' %}">About Selenium</a>
-        <a href="{% url 'sel_tut_app:code_examples' %}">Code Examples</a>
-        <a href="{% url 'sel_tut_app:page_object' %}">Page Object Pattern</a>
-        <a href="{% url 'sel_tut_app:playground' %}">Playground</a>
-        <a href="{% url 'sel_tut_app:contact' %}">Contact</a>
+        <h1>{% block heading %}Playground{% endblock %}</h1>
     </div>
 
     <div class="content">
         {% block content %}
         {% endblock %}
     </div>
+
+    <div class="back-button-container">
+        <button class="button back-button" onclick="goToPlayground()">Back</button>
+    </div>
+
+    <script>
+        function goToPlayground() {
+            window.location.href = "{% url 'sel_tut_app:playground' %}";
+        }
+    </script>
 
     <footer>
         <div class="footer-content">
