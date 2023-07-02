@@ -20,6 +20,11 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),
     path('my-account/', views.my_account_view, name='my_account'),
     path('text-fields/', views.text_fields, name='text_fields'),
+    path('video-player/', views.video_player, name='video_player'),
+    path('audio-player/', views.audio_player, name='audio_player'),
+    path('iframe/', views.iframe, name='iframe'),
+    path('form_1/', views.form_1, name='form_short'),
+    path('form_2/', views.form_2, name='form_long'),
 ]
 
 if settings.DEBUG:

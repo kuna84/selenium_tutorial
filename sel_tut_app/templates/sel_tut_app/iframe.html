@@ -1,0 +1,29 @@
+{% extends 'sel_tut_app/playground_base.html' %}
+
+{% load static %}
+
+{% block title %}Iframe (nested page) - Selenium Tutorial{% endblock %}
+
+{% block heading %}Iframe (nested page){% endblock %}
+
+{% block content %}
+
+<style>
+      .iframe-container {
+          width: 800px;
+          height: 600px;
+          margin: 20px auto;
+      }
+
+      iframe {
+          width: 100%;
+          height: 100%;
+          border: none;
+      }
+  </style>
+
+<div class="iframe-container">
+    <iframe src="{% url 'sel_tut_app:about_selenium' %}" ></iframe>
+</div>
+
+{% endblock %}

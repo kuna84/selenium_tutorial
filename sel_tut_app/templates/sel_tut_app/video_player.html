@@ -1,0 +1,30 @@
+{% extends 'sel_tut_app/playground_base.html' %}
+
+{% load static %}
+
+{% block title %}Video Player - Selenium Tutorial{% endblock %}
+
+{% block heading %}Video Player{% endblock %}
+
+{% block content %}
+
+<style>
+    .video-container {
+        position: relative;
+        width: 800px;
+        height: 450px;
+        margin: 20px auto;
+    }
+
+    video {
+        width: 100%;
+        height: 100%;
+    }
+
+</style>
+
+<div class="video-container">
+    <video id="video-player" src="{% static 'videos/waves.mp4' %}" controls></video>
+</div>
+
+{% endblock %}

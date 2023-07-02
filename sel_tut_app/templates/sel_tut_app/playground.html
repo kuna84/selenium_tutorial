@@ -11,7 +11,7 @@
 <style>
     .grid-container {
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         grid-gap: 10px;
         margin: 30px;
     }
@@ -34,31 +34,18 @@
     }
 </style>
 
-   <div class="grid-container">
-        <a class="grid-button" href="{% url 'sel_tut_app:text_formats' %}">Text Formats</a>
-        <a class="grid-button" href="{% url 'sel_tut_app:buttons' %}">Buttons</a>
-        <a class="grid-button" href="{% url 'sel_tut_app:messages' %}">Messages</a>
-        <a class="grid-button" href="{% url 'sel_tut_app:radio_checkbox' %}">Radio Buttons & Checkboxes</a>
-        <a class="grid-button" href="{% url 'sel_tut_app:sliders' %}">Sliders</a>
-        <a class="grid-button" href="{% url 'sel_tut_app:login' %}">Login</a>
-        <a class="grid-button" href="{% url 'sel_tut_app:text_fields' %}">Text Fields</a>
-        <a class="grid-button" href="#">BUTTON 8</a>
-        <a class="grid-button" href="#">BUTTON 9</a>
-        <a class="grid-button" href="#">BUTTON 10</a>
-        <a class="grid-button" href="#">BUTTON 11</a>
-        <a class="grid-button" href="#">BUTTON 12</a>
-        <a class="grid-button" href="#">BUTTON 13</a>
-        <a class="grid-button" href="#">BUTTON 14</a>
-        <a class="grid-button" href="#">BUTTON 15</a>
-        <a class="grid-button" href="#">BUTTON 16</a>
-        <a class="grid-button" href="#">BUTTON 17</a>
-        <a class="grid-button" href="#">BUTTON 18</a>
-        <a class="grid-button" href="#">BUTTON 19</a>
-        <a class="grid-button" href="#">BUTTON 20</a>
-        <a class="grid-button" href="#">BUTTON 21</a>
-        <a class="grid-button" href="#">BUTTON 22</a>
-        <a class="grid-button" href="#">BUTTON 23</a>
-        <a class="grid-button" href="#">BUTTON 24</a>
-        <a class="grid-button" href="#">BUTTON 25</a>
-    </div>
+<div class="grid-container">
+   <a class="grid-button" href="{% url 'sel_tut_app:text_formats' %}">Text Formats</a>
+   <a class="grid-button" href="{% url 'sel_tut_app:buttons' %}">Buttons</a>
+   <a class="grid-button" href="{% url 'sel_tut_app:messages' %}">Messages</a>
+   <a class="grid-button" href="{% url 'sel_tut_app:radio_checkbox' %}">Radio Buttons & Checkboxes</a>
+   <a class="grid-button" href="{% url 'sel_tut_app:sliders' %}">Sliders</a>
+   <a class="grid-button" href="{% url 'sel_tut_app:login' %}">Login</a>
+   <a class="grid-button" href="{% url 'sel_tut_app:text_fields' %}">Text Fields</a>
+   <a class="grid-button" href="{% url 'sel_tut_app:video_player' %}">Video Player</a>
+   <a class="grid-button" href="{% url 'sel_tut_app:audio_player' %}">Audio Player</a>
+   <a class="grid-button" href="{% url 'sel_tut_app:iframe' %}">Iframe</a>
+   <a class="grid-button" href="{% url 'sel_tut_app:form_short' %}">Form (short)</a>
+   <a class="grid-button" href="{% url 'sel_tut_app:form_long' %}">Form (long)</a>
+</div>
 {% endblock %}

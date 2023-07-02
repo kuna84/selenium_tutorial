@@ -55,3 +55,23 @@ def my_account_view(request):
 
 def text_fields(request):
     return render(request, 'sel_tut_app/text_fields.html')
+
+
+def video_player(request):
+    return render(request, 'sel_tut_app/video_player.html')
+
+
+def audio_player(request):
+    return render(request, 'sel_tut_app/audio_player.html')
+
+
+def iframe(request):
+    return render(request, 'sel_tut_app/iframe.html')
+
+
+def form_1(request):
+    return render(request, 'sel_tut_app/form_1.html')
+
+
+def form_2(request):
+    return render(request, 'sel_tut_app/form_2.html')
