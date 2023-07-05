@@ -1,10 +1,565 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'sel_tut_app/playground_base.html' %}
 
-</body>
-</html>
+{% load static %}
+
+{% block title %}Form (long) - Selenium Tutorial{% endblock %}
+
+{% block heading %}Form (long){% endblock %}
+
+{% block content %}
+
+<style>
+    h2 {
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .form-group:not(.exclude-styling) label {
+        width: 150px;
+        margin-right: 10px;
+        display: inline-block;
+        text-align: left;
+    }
+
+    fieldset {
+        width: 650px;
+        margin: 20px auto;
+    }
+
+    legend {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"] {
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+        width: 250px;
+    }
+
+    input[type="email"] {
+        width: 250px;
+    }
+
+    input[type="date"]{
+        width: 150px;
+    }
+
+    input.postal {
+        width: 70px;
+    }
+
+    input.house-number {
+        width: 50px;
+    }
+
+    input:focus + label,
+    input:valid + label {
+        color: #333;
+    }
+
+    .submit-button {
+        padding: 10px 20px;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        margin-top: 20px;
+        margin: 50 auto;
+        display: block;
+    }
+
+    fieldset.survey label {
+        display: block;
+        text-align: left;
+        font-weight: bold;
+        margin-bottom: 15px
+
+    }
+
+    fieldset.survey input[type="radio"],
+    fieldset.survey input[type="checkbox"] {
+        margin-bottom: 15px;
+    }
+
+    .form-group .error-message {
+        color: red;
+        font-size: 12px;
+    }
+
+    .form-group .success-message {
+        color: green;
+        font-size: 12px;
+    }
+
+    .form-group .required {
+        color: red;
+    }
+</style>
+
+
+<h2>Registration Form</h2>
+<form>
+    <fieldset>
+        <legend>Personal data</legend>
+
+        <div class="form-group exclude-styling">
+            <label for="name">Name:<span class="required">*</span></label>
+            <input type="text" id="name" name="first-name" placeholder="First Name" required>
+            <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="birthdate">Date of Birth:<span class="required">*</span></label>
+            <input type="date" id="birthdate" name="birthdate" required>
+        </div>
+
+        <div class="form-group exclude-styling">
+            <label>Gender:<span class="required">*</span></label>
+            <input type="radio" id="male" name="gender" value="male" required>
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="female" required>
+            <label for="female">Female</label>
+            <input type="radio" id="other" name="gender" value="other" required>
+            <label for="other">Other</label>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Contact information</legend>
+
+        <div class="form-group">
+            <label for="email">Email:<span class="required">*</span></label>
+            <input type="email" id="email" name="email" placeholder="email@example.com" required>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" pattern="\+48\d{9}" value="+48">
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Address details</legend>
+
+        <div class="form-group">
+            <label for="street">Street:<span class="required">*</span></label>
+            <input type="text" id="street" name="street" required>
+        </div>
+
+        <div class="form-group">
+            <label for="house-number">House Number:<span class="required">*</span></label>
+            <input type="text" id="house-number" name="house-number" required class="house-number">
+        </div>
+
+        <div class="form-group">
+            <label for="apartment-number">Apartment Number:</label>
+            <input type="text" id="apartment-number" name="apartment-number" class="house-number">
+        </div>
+
+        <div class="form-group">
+            <label for="postal-code">Postal Code:<span class="required">*</span></label>
+            <input type="text" id="postal-code" name="postal-code" pattern="\d{2}-\d{3}" placeholder="XX-XXX" required class="postal">
+        </div>
+
+        <div class="form-group">
+            <label for="city">City:<span class="required">*</span></label>
+            <input type="text" id="city" name="city" required>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Duration of Stay</legend>
+
+        <label for="start-date">Start Date:<span class="required">*</span></label>
+        <input type="date" id="start-date" name="start-date">
+
+        <label for="end-date">End Date:<span class="required">*</span></label>
+        <input type="date" id="end-date" name="end-date">
+
+        <p id="day-count"></p>
+
+        <div>
+            <input type="checkbox" id="early-checkin" name="early-checkin">
+            <label for="early-checkin">Early Check-in</label>
+        </div>
+
+        <div>
+            <input type="checkbox" id="late-checkout" name="late-checkout">
+            <label for="late-checkout">Late Check-out</label>
+        </div>
+    </fieldset>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var startDateInput = document.getElementById('start-date');
+            var endDateInput = document.getElementById('end-date');
+            var dayCountElement = document.getElementById('day-count');
+            var earlyCheckinCheckbox = document.getElementById('early-checkin');
+            var lateCheckoutCheckbox = document.getElementById('late-checkout');
+
+            startDateInput.addEventListener('change', handleStartDateChange);
+            endDateInput.addEventListener('change', handleEndDateChange);
+            earlyCheckinCheckbox.addEventListener('change', updateAdditionalServices);
+            lateCheckoutCheckbox.addEventListener('change', updateAdditionalServices);
+
+            function handleStartDateChange() {
+                var startDate = new Date(startDateInput.value);
+                var endDate = new Date(endDateInput.value);
+
+                if (endDate && endDate < startDate) {
+                    endDateInput.value = '';
+                }
+
+                calculateDayCount();
+            }
+
+            function handleEndDateChange() {
+                var startDate = new Date(startDateInput.value);
+                var endDate = new Date(endDateInput.value);
+
+                if (startDate && endDate && endDate < startDate) {
+                    startDateInput.value = '';
+                }
+
+                calculateDayCount();
+            }
+
+            function calculateDayCount() {
+                var startDate = new Date(startDateInput.value);
+                var endDate = new Date(endDateInput.value);
+
+                if (startDate && endDate && endDate >= startDate) {
+                    var dayCount = Math.floor((endDate - startDate) / (1000 * 60 * 60 * 24));
+                    dayCountElement.textContent = 'Number of days: ' + dayCount;
+                } else {
+                    dayCountElement.textContent = '';
+                }
+            }
+
+            function updateAdditionalServices() {
+                var additionalServices = [];
+
+                if (earlyCheckinCheckbox.checked) {
+                    additionalServices.push('Early Check-in');
+                }
+
+                if (lateCheckoutCheckbox.checked) {
+                    additionalServices.push('Late Check-out');
+                }
+
+                // Update additional services information on the page
+                var additionalServicesElement = document.getElementById('additional-services');
+                if (additionalServicesElement) {
+                    if (additionalServices.length > 0) {
+                        additionalServicesElement.textContent = 'Additional Services: ' + additionalServices.join(', ');
+                    } else {
+                        additionalServicesElement.textContent = '';
+                    }
+                }
+            }
+        });
+    </script>
+
+    <fieldset>
+        <legend>Payment method</legend>
+            <div class="form-group exclude-styling">
+                <label>
+                    <b>Please choose your payment method</b>
+                    <select id="payment">
+                        <option value="debit">Debit card</option>
+                        <option value="credit">Credit card</option>
+                        <option value="cash">Cash</option>
+                        <option value="transfer">Bank transfe</option>
+                    </select>
+                </label>
+            </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Permission to participate in the survey</legend>
+
+            <div class="form-group exclude-styling">
+                <label>
+                    <b>Do you consent to fill out an additional form?</b>
+                    <select id="consent-select">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </label>
+            </div>
+    </fieldset>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var consentSelect = document.getElementById('consent-select');
+            var surveyFieldset = document.querySelector('.survey');
+
+            surveyFieldset.style.display = 'none';
+
+            consentSelect.value = 'no';
+
+            consentSelect.addEventListener('change', function() {
+                if (this.value === 'yes') {
+                    surveyFieldset.style.display = 'block';
+                } else {
+                    surveyFieldset.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+    <fieldset class="survey">
+    <legend>Accommodation Survey</legend>
+
+    <div class="question exclude-styling">
+      <label>How often do you travel and use hotel services?</label>
+        <input type="radio" name="q1" value="Less than 10 times a year"> Less than 10 times a year
+        <input type="radio" name="q1" value="Between 10 and 50 times a year"> Between 10 and 50 times a year
+        <input type="radio" name="q1" value="More than 50 times a year"> More than 50 times a year
+        <input type="radio" name="q1" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>What are your preferred hotel categories?</label>
+        <input type="radio" name="q2" value="Budget"> Budget
+        <input type="radio" name="q2" value="Mid-range"> Mid-range
+        <input type="radio" name="q2" value="Luxury"> Luxury
+        <input type="radio" name="q2" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>Do you prefer staying in a city center or in a quieter location?</label>
+        <input type="radio" name="q3" value="City center"> City center
+        <input type="radio" name="q3" value="Quieter location"> Quieter location
+        <input type="radio" name="q3" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>What amenities do you consider important in a hotel?</label>
+        <input type="checkbox" name="q4" value="Free Wi-Fi"> Free Wi-Fi
+        <input type="checkbox" name="q4" value="Swimming pool"> Swimming pool
+        <input type="checkbox" name="q4" value="Fitness center"> Fitness center
+        <input type="checkbox" name="q4" value="Restaurant"> Restaurant
+        <input type="checkbox" name="q4" value="Spa"> Spa
+        <input type="checkbox" name="q4" value="Room service"> Room service
+        <input type="checkbox" name="q4" value="Other"> Other
+        <input type="checkbox" name="q4" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>How important is the price when choosing a hotel?</label>
+        <input type="radio" name="q5" value="Very important"> Very important
+        <input type="radio" name="q5" value="Somewhat important"> Somewhat important
+        <input type="radio" name="q5" value="Not very important"> Not very important
+        <input type="radio" name="q5" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>Have you ever used online booking platforms to make hotel reservations?</label>
+        <input type="radio" name="q6" value="Yes"> Yes
+        <input type="radio" name="q6" value="No"> No
+        <input type="radio" name="q6" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>Do you prefer a smoking or non-smoking room?</label>
+        <input type="radio" name="q7" value="Smoking"> Smoking
+        <input type="radio" name="q7" value="Non-smoking"> Non-smoking
+        <input type="radio" name="q7" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>How important is the hotel's location in relation to local attractions?</label>
+        <input type="radio" name="q8" value="Very important"> Very important
+        <input type="radio" name="q8" value="Somewhat important"> Somewhat important
+        <input type="radio" name="q8" value="Not very important"> Not very important
+        <input type="radio" name="q8" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>Do you prefer a hotel with a restaurant on-site?</label>
+        <input type="radio" name="q9" value="Yes"> Yes
+        <input type="radio" name="q9" value="No"> No
+        <input type="radio" name="q9" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>Are you willing to pay extra for additional services or amenities?</label>
+        <input type="radio" name="q10" value="Yes"> Yes
+        <input type="radio" name="q10" value="No"> No
+        <input type="radio" name="q10" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>Do you have any specific dietary requirements for hotel dining?</label>
+        <input type="radio" name="q11" value="Yes"> Yes
+        <input type="radio" name="q11" value="No"> No
+        <input type="radio" name="q11" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>How important is the hotel's proximity to public transportation?</label>
+        <input type="radio" name="q12" value="Very important"> Very important
+        <input type="radio" name="q12" value="Somewhat important"> Somewhat important
+        <input type="radio" name="q12" value="Not very important"> Not very important
+        <input type="radio" name="q12" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>What is your preferred check-in and check-out time?</label>
+        <input type="radio" name="q13" value="Morning"> Morning
+        <input type="radio" name="q13" value="Afternoon"> Afternoon
+        <input type="radio" name="q13" value="Evening"> Evening
+        <input type="radio" name="q13" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>Are you interested in additional hotel services such as laundry, concierge, or valet parking?</label>
+        <input type="radio" name="q14" value="Yes"> Yes
+        <input type="radio" name="q14" value="No"> No
+        <input type="radio" name="q14" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>How important is the availability of parking facilities at the hotel?</label>
+        <input type="radio" name="q15" value="Very important"> Very important
+        <input type="radio" name="q15" value="Somewhat important"> Somewhat important
+        <input type="radio" name="q15" value="Not very important"> Not very important
+        <input type="radio" name="q15" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>Do you prefer a hotel with a view (e.g., sea view, city view, etc.)?</label>
+        <input type="radio" name="q16" value="Yes"> Yes
+        <input type="radio" name="q16" value="No"> No
+        <input type="radio" name="q16" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>Do you prefer a hotel with a business center or meeting facilities?</label>
+        <input type="radio" name="q17" value="Yes"> Yes
+        <input type="radio" name="q17" value="No"> No
+        <input type="radio" name="q17" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>What is your preferred method of payment at the hotel?</label>
+        <input type="radio" name="q18" value="Credit card"> Credit card
+        <input type="radio" name="q18" value="Debit card"> Debit card
+        <input type="radio" name="q18" value="Cash"> Cash
+        <input type="radio" name="q18" value="Other"> Other
+        <input type="radio" name="q18" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>Do you have any specific accessibility requirements for your hotel room?</label>
+        <input type="radio" name="q19" value="Yes"> Yes
+        <input type="radio" name="q19" value="No"> No
+        <input type="radio" name="q19" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>How important is the reputation and reviews of the hotel?</label>
+        <input type="radio" name="q20" value="Very important"> Very important
+        <input type="radio" name="q20" value="Somewhat important"> Somewhat important
+        <input type="radio" name="q20" value="Not very important"> Not very important
+        <input type="radio" name="q20" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>Do you prefer a hotel with a 24-hour reception desk?</label>
+        <input type="radio" name="q21" value="Yes"> Yes
+        <input type="radio" name="q21" value="No"> No
+        <input type="radio" name="q21" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>Are you interested in hotel loyalty programs or membership rewards?</label>
+        <input type="radio" name="q22" value="Yes"> Yes
+        <input type="radio" name="q22" value="No"> No
+        <input type="radio" name="q22" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>How important is the size of the hotel room?</label>
+        <input type="radio" name="q23" value="Very important"> Very important
+        <input type="radio" name="q23" value="Somewhat important"> Somewhat important
+        <input type="radio" name="q23" value="Not very important"> Not very important
+        <input type="radio" name="q23" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>Do you prefer a hotel with a minibar in the room?</label>
+        <input type="radio" name="q24" value="Yes"> Yes
+        <input type="radio" name="q24" value="No"> No
+        <input type="radio" name="q24" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>What is your preferred method of transportation to the hotel?</label>
+        <input type="radio" name="q25" value="Car"> Car
+        <input type="radio" name="q25" value="Public transportation"> Public transportation
+        <input type="radio" name="q25" value="Taxi/ride-hailing"> Taxi/ride-hailing
+        <input type="radio" name="q25" value="Walking"> Walking
+        <input type="radio" name="q25" value="Other"> Other
+        <input type="radio" name="q25" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>Do you have any specific room preferences (e.g., high floor, quiet room, etc.)?</label>
+        <input type="radio" name="q26" value="Yes"> Yes
+        <input type="radio" name="q26" value="No"> No
+        <input type="radio" name="q26" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>How important is the hotel's environmental sustainability or eco-friendly practices?</label>
+        <input type="radio" name="q27" value="Very important"> Very important
+        <input type="radio" name="q27" value="Somewhat important"> Somewhat important
+        <input type="radio" name="q27" value="Not very important"> Not very important
+        <input type="radio" name="q27" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>Do you prefer a hotel with a gym or fitness center?</label>
+        <input type="radio" name="q28" value="Yes"> Yes
+        <input type="radio" name="q28" value="No"> No
+        <input type="radio" name="q28" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>Are you interested in hotel amenities such as a swimming pool, spa, or sauna?</label>
+        <input type="radio" name="q29" value="Yes"> Yes
+        <input type="radio" name="q29" value="No"> No
+        <input type="radio" name="q29" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+
+    <div class="form-group exclude-styling">
+        <label>How important is the hotel's overall price or affordability?</label>
+        <input type="radio" name="q30" value="Very important"> Very important
+        <input type="radio" name="q30" value="Somewhat important"> Somewhat important
+        <input type="radio" name="q30" value="Not very important"> Not very important
+        <input type="radio" name="q30" value="Prefer not to answer"> I would prefer not to answer this question
+    </div>
+    </fieldset>
+
+    <div class="form-group">
+        <button class="submit-button" type="submit">Submit</button>
+    </div>
+</form>
+
+{% endblock %}
