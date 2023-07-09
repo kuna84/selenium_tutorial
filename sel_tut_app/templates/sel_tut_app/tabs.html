@@ -1,0 +1,153 @@
+{% extends 'sel_tut_app/playground_base.html' %}
+
+{% load static %}
+
+{% block title %}Tabs - Selenium Tutorial{% endblock %}
+
+{% block heading %}Tabs{% endblock %}
+
+{% block content %}
+
+<meta charset="UTF-8">
+
+<style>
+    h1 {
+        text-align: center;
+    }
+
+    .tab {
+      display: none;
+
+      border: 1px solid #f1f1f1;
+    }
+
+    .tab.active {
+      display: block;
+    }
+
+    .tab-container {
+      background-color: #f1f1f1
+    }
+
+    .tab-buttons button {
+      width: 25%;
+      border: none;
+      background-color: #f1f1f1;
+      cursor: pointer;
+      padding: 14px 0;
+      transition: 0.3s;
+      margin-right: -5px;
+    }
+
+    .tab-buttons button:hover {
+      background-color: #ddd;
+    }
+
+    .tab-buttons button.active {
+      background-color: #ddd;
+    }
+</style>
+
+<script>
+    function openTab(tabName) {
+      var i, tabs, buttons;
+      tabs = document.getElementsByClassName("tab");
+      buttons = document.getElementsByClassName("tab-buttons")[0].getElementsByTagName("button");
+      for (i = 0; i < tabs.length; i++) {
+        tabs[i].classList.remove("active");
+        buttons[i].classList.remove("active");
+      }
+      document.getElementById(tabName).classList.add("active");
+      event.currentTarget.classList.add("active");
+    }
+
+    window.addEventListener('DOMContentLoaded', function() {
+      openTab('english-tab');
+    });
+</script>
+
+<h1>Agile Manifesto</h1>
+<div class="tab-buttons">
+  <button onclick="openTab('english-tab')" class="active">ENG</button>
+  <button onclick="openTab('polish-tab')">POL</button>
+  <button onclick="openTab('spanish-tab')">ESP</button>
+  <button onclick="openTab('french-tab')">FRA</button>
+</div>
+
+<div class="tab-container">
+  <div id="english-tab" class="tab active">
+    <p>
+      We are uncovering better ways of developing
+      software by doing it and helping others do it.
+      Through this work we have come to value:
+    </p>
+    <ul>
+      <li>Individuals and interactions over processes and tools</li>
+      <li>Working software over comprehensive documentation</li>
+      <li>Customer collaboration over contract negotiation</li>
+      <li>Responding to change over following a plan</li>
+    </ul>
+    <p>
+      That is, while there is value in the items on
+      the right, we value the items on the left more.
+    </p>
+  </div>
+
+  <div id="polish-tab" class="tab">
+    <p>
+      Odkrywamy lepsze sposoby tworzenia oprogramowania,
+      zarówno poprzez stawianie na działanie, jak i pomaganie innym w tym.
+      W naszej pracy cenimy sobie:
+    </p>
+    <ul>
+      <li>Ludzi i interakcje ponad procesy i narzędzia</li>
+      <li>Działające oprogramowanie ponad obszerną dokumentację</li>
+      <li>Współpracę z klientem ponad negocjację umów</li>
+      <li>Reagowanie na zmiany ponad trzymanie się planu</li>
+    </ul>
+    <p>
+      To znaczy, że choć wartość jest w elementach po prawej stronie,
+      to większą wartość przywiązujemy do elementów po lewej.
+    </p>
+  </div>
+
+  <div id="spanish-tab" class="tab">
+    <p>
+      Estamos descubriendo formas mejores de desarrollar
+      software, tanto por nuestra experiencia como ayudando
+      a terceros. A través de este trabajo hemos aprendido
+      a valorar:
+    </p>
+    <ul>
+      <li>Individuos e interacciones por encima de procesos y herramientas</li>
+      <li>Software funcionando por encima de documentación extensiva</li>
+      <li>Colaboración con el cliente por encima de negociación contractual</li>
+      <li>Respuesta ante el cambio por encima de seguir un plan</li>
+    </ul>
+    <p>
+      Es decir, aunque valoramos los elementos de la derecha,
+      valoramos más los de la izquierda.
+    </p>
+  </div>
+
+  <div id="french-tab" class="tab">
+    <p>
+      Nous découvrons comment mieux développer
+      des logiciels en les réalisant et en aidant
+      les autres à le faire. Grâce à cette expérience,
+      nous avons appris à valoriser :
+    </p>
+    <ul>
+      <li>Les individus et leurs interactions plus que les processus et les outils</li>
+      <li>Un logiciel opérationnel plus qu'une documentation exhaustive</li>
+      <li>La collaboration avec les clients plus que la négociation contractuelle</li>
+      <li>L'adaptation au changement plus que le suivi d'un plan</li>
+    </ul>
+    <p>
+      Cela signifie que, bien que nous reconnaissions la valeur
+      des éléments de droite, nous valorisons davantage ceux de gauche.
+    </p>
+  </div>
+</div>
+
+{% endblock %}

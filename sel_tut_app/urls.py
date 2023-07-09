@@ -25,6 +25,9 @@ urlpatterns = [
     path('iframe/', views.iframe, name='iframe'),
     path('form_1/', views.form_1, name='form_short'),
     path('form_2/', views.form_2, name='form_long'),
+    path('accordion/', views.accordion, name='accordion'),
+    path('tabs/', views.tabs, name='tabs'),
+    path('sidenav/', views.sidenav, name='sidenav'),
 ]
 
 if settings.DEBUG:

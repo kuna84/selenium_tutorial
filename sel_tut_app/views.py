@@ -75,3 +75,15 @@ def form_1(request):
 
 def form_2(request):
     return render(request, 'sel_tut_app/form_2.html')
+
+
+def accordion(request):
+    return render(request, 'sel_tut_app/accordion.html')
+
+
+def tabs(request):
+    return render(request, 'sel_tut_app/tabs.html')
+
+
+def sidenav(request):
+    return render(request, 'sel_tut_app/sidenav.html')

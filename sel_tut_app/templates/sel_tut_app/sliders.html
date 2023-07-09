@@ -8,21 +8,44 @@
 
 {% block content %}
 
+<style>
+    .slider-container {
+      margin-bottom: 20px;
+      margin-right: 20px;
+    }
+
+    .slider1 {
+      width: 300px;
+    }
+
+    .slider2 {
+      width: 400px;
+    }
+
+    .slider3 {
+      width: 500px;
+    }
+
+    .slider4 {
+      width: 600px;
+    }
+</style>
+
 <div class="slider-container">
     <label for="slider1">Slider 1 (0-10): </label>
-    <input type="range" id="slider1" class="slider" min="0" max="10">
+    <input type="range" id="slider1" class="slider1" min="0" max="10">
     <span class="slider-value" id="slider1-value">5</span>
 </div>
 
 <div class="slider-container">
     <label for="slider2">Slider 2 (0-100): </label>
-    <input type="range" id="slider2" class="slider" min="0" max="100">
+    <input type="range" id="slider2" class="slider2" min="0" max="100">
     <span class="slider-value" id="slider2-value">0</span>
 </div>
 
 <div class="slider-container">
     <label for="slider3">Slider 3 (0-1000): </label>
-    <input type="range" id="slider3" class="slider" min="0" max="1000">
+    <input type="range" id="slider3" class="slider3" min="0" max="1000">
     <span class="slider-value" id="slider3-value">0</span>
     <input type="number" id="slider3-input" class="slider-value" min="0" max="1000" step="1">
     <button onclick="setSliderValue('slider3', 'slider3-input')">Set</button>
@@ -30,11 +53,9 @@
 
 <div class="slider-container">
     <label for="slider4">Slider 4 (0-255): </label>
-    <input type="range" id="slider4" class="slider" min="0" max="255" step="5">
+    <input type="range" id="slider4" class="slider4" min="0" max="255" step="5">
     <span class="slider-value" id="slider4-value">0</span>
 </div>
-
-
 
 <script>
     function setSliderValue(sliderId, inputId) {
@@ -51,10 +72,10 @@
         value.textContent = slider.value;
     }
 
-    const sliders = document.querySelectorAll('.slider');
+    const sliders = document.querySelectorAll('.slider1, .slider2, .slider3, .slider4');
     sliders.forEach(slider => {
         slider.addEventListener('input', () => {
-        updateSliderValue(slider.id);
+            updateSliderValue(slider.id);
         });
     });
 </script>
