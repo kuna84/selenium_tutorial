@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Management</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>User Management</h2>
+    <button onclick="showModal()">Add</button>
+    <br><br>
+    <table id="userTable">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>PESEL</th>
+            <th>Department</th>
+            <th>Grade</th>
+            <th>Project Code</th>
+            <th>Actions</th>
+        </tr>
+    </table>
+
+    <div id="addUserModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3>Add User</h3>
+            <form id="userForm" onsubmit="addUser(event)">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" required><br><br>
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" required><br><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" required><br><br>
+                <label for="pesel">PESEL:</label>
+                <input type="text" id="pesel" pattern="[0-9]{11}" required><br><br>
+                <label for="department">Department:</label>
+                <select id="department">
+                    <option value="Admin">Admin</option>
+                    <option value="Support">Support</option>
+                    <option value="Delivery">Delivery</option>
+                    <option value="HR">HR</option>
+                </select><br><br>
+                <label for="grade">Grade:</label>
+                <select id="grade">
+                    <option value="Junior">Junior</option>
+                    <option value="Regular">Regular</option>
+                    <option value="Senior">Senior</option>
+                </select><br><br>
+                <label for="projectCode">Project Code:</label>
+                <input type="text" id="projectCode" pattern="[A-Za-z]{3}[0-9]{2}" required><br><br>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Array to store user data
+        var users = [];
+
+        // Function to show the modal
+        function showModal() {
+            document.getElementById("addUserModal").style.display = "block";
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById("addUserModal").style.display = "none";
+        }
+
+        // Function to add a new user
+        function addUser(event) {
+            event.preventDefault();
+
+            // Get form input values
+            var firstName = document.getElementById("firstName").value;
+            var lastName = document.getElementById("lastName").value;
+            var email = document.getElementById("email").value;
+            var pesel = document.getElementById("pesel").value;
+            var department = document.getElementById("department").value;
+            var grade = document.getElementById("grade").value;
+            var projectCode = document.getElementById("projectCode").value;
+
+            // Create a new user object
+            var user = {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                pesel: pesel,
+                department: department,
+                grade: grade,
+                projectCode: projectCode
+            };
+
+            // Add the user to the array
+            users.push(user);
+
+            // Reset form inputs
+            document.getElementById("userForm").reset();
+
+            // Refresh the user table
+            refreshTable();
+
+            // Close the modal
+            closeModal();
+        }
+
+        // Function to refresh the user table
+        function refreshTable() {
+            var table = document.getElementById("userTable");
+
+            // Clear the table body
+            table.innerHTML = "<tr><th>First Name</th><th>Last Name</th><th>Email</th><th>PESEL</th><th>Department</th><th>Grade</th><th>Project Code</th><th>Actions</th></tr>";
+
+            // Populate the table with user data
+            for (var i = 0; i < users.length; i++) {
+                var user = users[i];
+
+                var row = document.createElement("tr");
+                row.innerHTML = "<td>" + user.firstName + "</td>" +
+                                "<td>" + user.lastName + "</td>" +
+                                "<td>" + user.email + "</td>" +
+                                "<td>" + user.pesel + "</td>" +
+                                "<td>" + user.department + "</td>" +
+                                "<td>" + user.grade + "</td>" +
+                                "<td>" + user.projectCode + "</td>" +
+                                '<td><button onclick="editUser(' + i + ')">Edit</button> ' +
+                                '<button onclick="deleteUser(' + i + ')">Delete</button></td>';
+
+                table.appendChild(row);
+            }
+        }
+
+        // Function to edit a user
+        function editUser(index) {
+            var user = users[index];
+
+            // Fill the form with user data
+            document.getElementById("firstName").value = user.firstName;
+            document.getElementById("lastName").value = user.lastName;
+            document.getElementById("email").value = user.email;
+            document.getElementById("pesel").value = user.pesel;
+            document.getElementById("department").value = user.department;
+            document.getElementById("grade").value = user.grade;
+            document.getElementById("projectCode").value = user.projectCode;
+
+            // Remove the user from the array
+            users.splice(index, 1);
+
+            // Refresh the user table
+            refreshTable();
+
+            // Show the modal
+            showModal();
+        }
+
+        // Function to delete a user
+        function deleteUser(index) {
+            // Remove the user from the array
+            users.splice(index, 1);
+
+            // Refresh the user table
+            refreshTable();
+        }
+    </script>
+</body>
+</html>
