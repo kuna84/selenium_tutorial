@@ -87,3 +87,11 @@ def tabs(request):
 
 def sidenav(request):
     return render(request, 'sel_tut_app/sidenav.html')
+
+
+def table(request):
+    return render(request, 'sel_tut_app/table.html')
+
+
+def draggable(request):
+    return render(request, 'sel_tut_app/draggable.html')

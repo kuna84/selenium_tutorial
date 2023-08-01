@@ -28,6 +28,8 @@ urlpatterns = [
     path('accordion/', views.accordion, name='accordion'),
     path('tabs/', views.tabs, name='tabs'),
     path('sidenav/', views.sidenav, name='sidenav'),
+    path('table/', views.table, name='table'),
+    path('draggable/', views.draggable, name='draggable'),
 ]
 
 if settings.DEBUG:
