@@ -7,11 +7,11 @@ app_name = 'sel_tut_app'
 
 urlpatterns = [
     path('', views.home_view, name='home'),
-    path('about-selenium/', views.about_selenium_view, name='about_selenium'),
-    path('code-examples/', views.code_examples_view, name='code_examples'),
-    path('page-object/', views.page_object_view, name='page_object'),
+    path('selenium-basics/', views.selenium_basics_view, name='selenium_basics'),
+    path('tutorial/', views.tutorial_view, name='tutorial'),
+    path('exercises/', views.exercises_view, name='exercises'),
     path('playground/', views.playground_view, name='playground'),
-    path('contact/', views.contact_view, name='contact'),
+    path('about/', views.about_view, name='about'),
     path('text-formats/', views.text_formats_view, name='text_formats'),
     path('buttons/', views.buttons_view, name='buttons'),
     path('messages/', views.messages_view, name='messages'),

@@ -1,0 +1,110 @@
+{% extends 'sel_tut_app/base.html' %}
+
+{% block title %}Selenium basics - Selenium Tutorial{% endblock %}
+
+{% block heading %}Selenium basics{% endblock %}
+
+{% block content %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    #sidebar {
+        width: 200px;
+        background-color: #f0f0f0;
+        padding: 0px;
+        position: fixed;
+        top: 70;
+        left: 0;
+        bottom: 0;
+        text-indent: 10px;
+    }
+    #content {
+        flex: 1;
+        padding: 20px;
+        margin-left: 220px;
+    }
+    h2 {
+        margin-top: 15px;
+    }
+    h3 {
+        margin-top: 10px;
+    }
+    ul {
+        list-style: none;
+        padding-left: 0;
+    }
+    li {
+        margin-bottom: 10px;
+    }
+    #sidebar a {
+        color: #000;
+        text-decoration: none;
+        display: block;
+        padding: 5px 5px;
+        margin: -5px -1px;
+    }
+    #sidebar a:hover {
+        background-color: #ddd;
+    }
+</style>
+
+<div style="display: flex;">
+    <div id="sidebar">
+        <h3>Table of Contents</h3>
+        <ul>
+            <li><a href="#about-selenium">   About Selenium</a></li>
+            <li><a href="#selenium-installation">   Selenium installation</a></li>
+        </ul>
+    </div>
+    <div id="content">
+        <div id="about-selenium">
+            <hr>
+            <h2>About Selenium</h2>
+            <p>Selenium is a popular open-source web testing framework used by developers and testers to automate web browser interactions. It provides a suite of tools and libraries that enable the automation of web applications across different browsers and platforms. Selenium offers a robust and flexible platform for creating automated tests, performing web scraping, and conducting web-based tasks efficiently.</p>
+            </div>
+            <h3>Key Features</h3>
+            <ul>
+                <li>Cross-Browser Compatibility: Selenium supports various web browsers, including Chrome, Firefox, Safari, and Internet Explorer. This allows developers to test their web applications across multiple browsers, ensuring consistent functionality and user experience.</li>
+                <li>Programming Language Support: Selenium provides support for multiple programming languages such as Java, Python, C#, Ruby, and JavaScript. Developers can choose their preferred language to write test scripts, making it accessible to a wide range of developers.</li>
+                <li>Element Identification: Selenium offers various methods to locate elements on a web page, including ID, class name, XPath, CSS selectors, and more. This flexibility allows testers to interact with web elements accurately, perform actions like clicking buttons, filling forms, and verifying content.</li>
+                <li>Test Recording and Playback: Selenium IDE (Integrated Development Environment) allows users to record interactions with a web application and generate test scripts automatically. These scripts can be played back for regression testing, reducing manual effort and ensuring application stability.</li>
+                <li>Extensibility: Selenium's modular architecture enables the integration of additional libraries and frameworks to enhance its capabilities. It integrates well with testing frameworks like TestNG and JUnit, enabling advanced test management and reporting.</li>
+                <li>Parallel Test Execution: Selenium Grid enables the execution of tests in parallel across multiple browsers and platforms. This significantly reduces the overall test execution time and increases efficiency.</li>
+            </ul>
+            <h3>Benefits</h3>
+            <ul>
+                <li>Automation: Selenium simplifies the process of automating repetitive tasks, allowing developers and testers to focus on more complex scenarios. Automated tests can be executed repeatedly, ensuring the stability and reliability of web applications.</li>
+                <li>Compatibility Testing: With Selenium, developers can verify that their web applications function correctly across different browsers and platforms. This helps identify and fix any compatibility issues before the application is deployed.</li>
+                <li>Faster Feedback: By automating tests, developers receive instant feedback on the quality of their code. This enables faster bug detection and resolution, leading to shorter development cycles and quicker releases.</li>
+                <li>Regression Testing: Selenium is widely used for regression testing to ensure that new updates or changes to an application do not introduce any unexpected issues. Test scripts can be re-executed to validate the functionality of the entire system.</li>
+            </ul>
+            <h3>Conclusion</h3>
+            <p>Selenium has become an indispensable tool in the world of web application testing and automation. Its extensive features, cross-browser compatibility, and support for multiple programming languages make it a preferred choice for developers and testers. With Selenium, organizations can achieve faster testing cycles, improved application quality, and enhanced user experiences. Whether automating tests or scraping data, Selenium provides a powerful framework for efficient web interaction and testing.</p>
+            <hr>
+        <div id="selenium-installation">
+            <h2>Selenium installation</h2>
+            <p>
+                Here, you can place the content related to Selenium installation.
+                Provide instructions for different systems (Windows, macOS, Linux).
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum facilisis nunc et orci
+                consectetur, et egestas libero tincidunt. Maecenas semper suscipit lectus vitae vestibulum.
+                Curabitur in tortor vel nunc iaculis scelerisque. Donec lacinia, metus vel scelerisque luctus,
+                tortor arcu bibendum dolor, id luctus velit ipsum quis purus. Proin facilisis tellus eu leo
+                eleifend iaculis. Duis ut quam nunc. Praesent varius magna eu tortor porttitor, eget dignissim
+                purus luctus. Integer facilisis lacus vitae libero facilisis, ut elementum mi dictum. Nullam
+                ut consequat odio. Vivamus rhoncus risus vel quam ullamcorper cursus.
+            </p>
+            <hr>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
