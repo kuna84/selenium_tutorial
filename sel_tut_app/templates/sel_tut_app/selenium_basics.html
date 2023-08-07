@@ -6,105 +6,326 @@
 
 {% block content %}
 
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-    }
-    #sidebar {
-        width: 200px;
-        background-color: #f0f0f0;
-        padding: 0px;
-        position: fixed;
-        top: 70;
-        left: 0;
-        bottom: 0;
-        text-indent: 10px;
-    }
-    #content {
-        flex: 1;
-        padding: 20px;
-        margin-left: 220px;
-    }
-    h2 {
-        margin-top: 15px;
-    }
-    h3 {
-        margin-top: 10px;
-    }
-    ul {
-        list-style: none;
-        padding-left: 0;
-    }
-    li {
-        margin-bottom: 10px;
-    }
-    #sidebar a {
-        color: #000;
-        text-decoration: none;
-        display: block;
-        padding: 5px 5px;
-        margin: -5px -1px;
-    }
-    #sidebar a:hover {
-        background-color: #ddd;
-    }
-</style>
-
-<div style="display: flex;">
-    <div id="sidebar">
-        <h3>Table of Contents</h3>
-        <ul>
-            <li><a href="#about-selenium">   About Selenium</a></li>
-            <li><a href="#selenium-installation">   Selenium installation</a></li>
-        </ul>
+<div id="sidebar">
+    <h3>Table of Contents</h3>
+    <ul>
+        <li><a href="#about-selenium">   About Selenium</a></li>
+        <li><a href="#webdriver">   WebDriver</a></li>
+        <li><a href="#web-page-basics">   Webpage Basics</a></li>
+        <li><a href="#selectors">   Selenium Selectors</a></li>
+    </ul>
+</div>
+<div class="content">
+    <div id="about-selenium">
+        <hr><h2>About Selenium</h2><hr>
+        <p>Selenium is a popular open-source web testing framework used by developers and testers to automate web
+            browser interactions. It provides a suite of tools and libraries that enable the automation of web
+            applications across different browsers and platforms. Selenium offers a robust and flexible platform for
+            creating automated tests, performing web scraping, and conducting web-based tasks efficiently.</p><br>
+        <h3><u>Key Features</u></h3>
+        <h4>Cross-Browser Compatibility</h4>
+        <p>Selenium supports various web browsers, including Chrome, Firefox, Safari, and Internet Explorer. This
+            allows developers to test their web applications across multiple browsers, ensuring consistent
+            functionality and user experience.</p>
+        <h4>Programming Language Support</h4>
+        <p>Selenium provides support for multiple programming languages such as Java, Python, C#, Ruby, and
+            JavaScript. Developers can choose their preferred language to write test scripts, making it accessible
+            to a wide range of developers.</p>
+        <h4>Element Identification</h4>
+        <p>Selenium offers various methods to locate elements on a web page, including ID, class name, XPath, CSS
+            selectors, and more. This flexibility allows testers to interact with web elements accurately, perform
+            actions like clicking buttons, filling forms, and verifying content.</p>
+        <h4>Test Recording and Playback</h4>
+        <p>Selenium IDE (Integrated Development Environment) allows users to record interactions with a web
+            application and generate test scripts automatically. These scripts can be played back for regression
+            testing, reducing manual effort and ensuring application stability.</p>
+        <h4>Extensibility</h4>
+            <p>Selenium's modular architecture enables the integration of additional libraries and frameworks to
+                enhance its capabilities. It integrates well with testing frameworks like TestNG and JUnit, enabling
+                advanced test management and reporting.</p>
+        <h4>Parallel Test Execution</h4>
+        <p>Selenium Grid enables the execution of tests in parallel across multiple browsers and platforms. This
+            significantly reduces the overall test execution time and increases efficiency.</p>
+        <h3><u>Benefits</u></h3>
+        <h4>Automation</h4>
+        <p>Selenium simplifies the process of automating repetitive tasks, allowing developers and testers to focus
+            on more complex scenarios. Automated tests can be executed repeatedly, ensuring the stability and
+            reliability of web applications.</p>
+        <h4>Compatibility Testing</h4>
+        <p>With Selenium, developers can verify that their web applications function correctly across different
+            browsers and platforms. This helps identify and fix any compatibility issues before the application is
+            deployed.</p>
+        <h4>Faster Feedback</h4>
+        <p>By automating tests, developers receive instant feedback on the quality of their code. This enables
+            faster bug detection and resolution, leading to shorter development cycles and quicker releases.</p>
+        <h4>Regression Testing</h4>
+        <p>Selenium is widely used for regression testing to ensure that new updates or changes to an application do
+            not introduce any unexpected issues. Test scripts can be re-executed to validate the functionality of
+            the entire system.</p>
+        <h3><u>Conclusion</u></h3>
+        <p>Selenium has become an indispensable tool in the world of web application testing and automation.
+            Its extensive features, cross-browser compatibility, and support for multiple programming languages make
+            it a preferred choice for developers and testers. With Selenium, organizations can achieve faster
+            testing cycles, improved application quality, and enhanced user experiences. Whether automating tests or
+            scraping data, Selenium provides a powerful framework for efficient web interaction and testing.</p>
     </div>
-    <div id="content">
-        <div id="about-selenium">
-            <hr>
-            <h2>About Selenium</h2>
-            <p>Selenium is a popular open-source web testing framework used by developers and testers to automate web browser interactions. It provides a suite of tools and libraries that enable the automation of web applications across different browsers and platforms. Selenium offers a robust and flexible platform for creating automated tests, performing web scraping, and conducting web-based tasks efficiently.</p>
-            </div>
-            <h3>Key Features</h3>
-            <ul>
-                <li>Cross-Browser Compatibility: Selenium supports various web browsers, including Chrome, Firefox, Safari, and Internet Explorer. This allows developers to test their web applications across multiple browsers, ensuring consistent functionality and user experience.</li>
-                <li>Programming Language Support: Selenium provides support for multiple programming languages such as Java, Python, C#, Ruby, and JavaScript. Developers can choose their preferred language to write test scripts, making it accessible to a wide range of developers.</li>
-                <li>Element Identification: Selenium offers various methods to locate elements on a web page, including ID, class name, XPath, CSS selectors, and more. This flexibility allows testers to interact with web elements accurately, perform actions like clicking buttons, filling forms, and verifying content.</li>
-                <li>Test Recording and Playback: Selenium IDE (Integrated Development Environment) allows users to record interactions with a web application and generate test scripts automatically. These scripts can be played back for regression testing, reducing manual effort and ensuring application stability.</li>
-                <li>Extensibility: Selenium's modular architecture enables the integration of additional libraries and frameworks to enhance its capabilities. It integrates well with testing frameworks like TestNG and JUnit, enabling advanced test management and reporting.</li>
-                <li>Parallel Test Execution: Selenium Grid enables the execution of tests in parallel across multiple browsers and platforms. This significantly reduces the overall test execution time and increases efficiency.</li>
-            </ul>
-            <h3>Benefits</h3>
-            <ul>
-                <li>Automation: Selenium simplifies the process of automating repetitive tasks, allowing developers and testers to focus on more complex scenarios. Automated tests can be executed repeatedly, ensuring the stability and reliability of web applications.</li>
-                <li>Compatibility Testing: With Selenium, developers can verify that their web applications function correctly across different browsers and platforms. This helps identify and fix any compatibility issues before the application is deployed.</li>
-                <li>Faster Feedback: By automating tests, developers receive instant feedback on the quality of their code. This enables faster bug detection and resolution, leading to shorter development cycles and quicker releases.</li>
-                <li>Regression Testing: Selenium is widely used for regression testing to ensure that new updates or changes to an application do not introduce any unexpected issues. Test scripts can be re-executed to validate the functionality of the entire system.</li>
-            </ul>
-            <h3>Conclusion</h3>
-            <p>Selenium has become an indispensable tool in the world of web application testing and automation. Its extensive features, cross-browser compatibility, and support for multiple programming languages make it a preferred choice for developers and testers. With Selenium, organizations can achieve faster testing cycles, improved application quality, and enhanced user experiences. Whether automating tests or scraping data, Selenium provides a powerful framework for efficient web interaction and testing.</p>
-            <hr>
-        <div id="selenium-installation">
-            <h2>Selenium installation</h2>
-            <p>
-                Here, you can place the content related to Selenium installation.
-                Provide instructions for different systems (Windows, macOS, Linux).
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum facilisis nunc et orci
-                consectetur, et egestas libero tincidunt. Maecenas semper suscipit lectus vitae vestibulum.
-                Curabitur in tortor vel nunc iaculis scelerisque. Donec lacinia, metus vel scelerisque luctus,
-                tortor arcu bibendum dolor, id luctus velit ipsum quis purus. Proin facilisis tellus eu leo
-                eleifend iaculis. Duis ut quam nunc. Praesent varius magna eu tortor porttitor, eget dignissim
-                purus luctus. Integer facilisis lacus vitae libero facilisis, ut elementum mi dictum. Nullam
-                ut consequat odio. Vivamus rhoncus risus vel quam ullamcorper cursus.
-            </p>
-            <hr>
+    <div id="webdriver">
+        <hr><h2>WebDriver</h2><hr>
+        <p>WebDriver is a tool and interface that enables automated testing of web applications. It allows
+            developers and testers to control web browsers programmatically and interact with web elements, enabling
+            end-to-end testing of web applications.</p>
+        <p>WebDriver provides a set of APIs (Application Programming Interfaces) that allow users to write code in
+            various programming languages (such as Java, Python, C#, etc.) to simulate user interactions with a web
+            browser. This includes tasks like opening a web page, clicking buttons, filling out forms, navigating
+            between pages, and verifying the content of web elements.</p>
+        <p>The main purpose of WebDriver is to support browser automation, making it a critical component of modern
+            web testing frameworks. Testers can create automated test scripts using WebDriver to ensure that web
+            applications function correctly and maintain their expected behavior during development and throughout
+            their lifecycle.</p>
+        <p>WebDriver is not limited to a specific browser but is designed to work across multiple browsers, such as
+            Chrome, Firefox, Safari, Edge, and others. Different WebDriver implementations are available for each
+            supported browser, allowing users to write cross-browser test scripts without significant
+            modifications.</p>
+        <p>By using WebDriver, developers and testers can streamline the testing process, reduce manual effort, and
+            achieve more consistent and reliable results. It has become an essential tool in the field of automated
+            testing for web applications.</p>
+    </div>
+    <div id="web-page-basics">
+        <hr><h2>Webpage Basics</h2><hr>
+        <p>A webpage is a document that is displayed on the World Wide Web. It is made up of HTML code, which is a
+            markup language that tells the browser how to display the page. The structure of a web page is
+            determined by the HTML code that is used to create it.</p><br>
+        <h3><u>HTML Structure</u></h3>
+        <p>HTML (Hypertext Markup Language) serves as the backbone of web pages, defining their structure and
+            development. In this chapter, we will explore the main building blocks of HTML, including divs, and
+            examine various elements commonly found on a web page.</p><br>
+        <h3>Structure Elements:</h3>
+        <div class="code-container">
+            <h4>Document Type Declaration (DTD)</h4>
+            <figure>
+                <figcaption>The DTD is the first line of an HTML document and specifies the version of HTML being
+                    used. For modern web pages, the HTML5 doctype is commonly used.</figcaption>
+                    <pre><code class="language-html">
+                        &lt;!DOCTYPE html&gt;
+                    </code></pre>
+            </figure>
         </div>
+        <div class="code-container">
+            <h4>HTML Element</h4>
+            <figure>
+                <figcaption>The root element of the entire page that encloses all other elements. It is usually
+                    the first element after the DTD declaration.</figcaption>
+                    <pre><code class="language-html">
+                        &lt;html lang="en"&gt;
+                    </code></pre>
+            </figure>
+        </div>
+        <div class="code-container">
+            <h4>Head</h4>
+            <figure>
+                <figcaption>The head element contains meta-information about the web page, such as the title,
+                    character encoding, links to CSS stylesheets, and scripts. The content inside the head is not
+                    visible on the page itself but provides important information to browsers and search engines.
+                </figcaption>
+                    <pre><code class="language-html">
+                        &lt;head&gt;
+                          &lt;meta charset="UTF-8"&gt;
+                          &lt;title&gt;The example of HTML webpage code&lt;/title&gt;
+                        &lt;/head&gt;
+                    </code></pre>
+            </figure>
+        </div>
+        <div class="code-container">
+            <h4>Body</h4>
+            <figure>
+                <figcaption>The body element contains the visible content of the web page, including text, images,
+                    videos, and other elements.</figcaption>
+                    <pre><code class="language-html">
+                        &lt;body&gt;
+                          &lt;header&gt;
+                            &lt;h1&gt;Example HTML Page&lt;/h1&gt;
+                          &lt;/header&gt;
+
+                          &lt;nav&gt;
+                            &lt;a href="#"&gt;Home&lt;/a&gt;
+                            &lt;a href="#"&gt;About&lt;/a&gt;
+                            &lt;a href="#"&gt;Contact&lt;/a&gt;
+                          &lt;/nav&gt;
+
+                          &lt;main&gt;
+                            &lt;h2&gt;Content&lt;/h2&gt;
+                            &lt;p&gt;
+                            Lorem ipsum dolor sit amet.
+                          &lt;/p&gt;
+                          &lt;/main&gt;
+
+                          &lt;footer&gt;
+                            &copy;2023 ExamplePage.com. All rights reserved.
+                          &lt;/footer&gt;
+                        &lt;/body&gt;
+                    </code></pre>
+            </figure>
+        </div>
+        <br>
+        <h3><u>Div</u></h3>
+        <p>Div, short for „division", is generic containers used to group and structure content on a web page.
+            Divs act as building blocks for layout and styling, allowing developers to apply CSS styles to groups of
+            elements collectively. Divs have no inherent meaning and are often given class or ID attributes to
+            target them with CSS or JavaScript</p>
+            <figure>
+                <figcaption>DIV example:</figcaption>
+                    <pre><code class="language-html">
+                        &lt;div id="myDiv"&gt;...&lt;/div&gt;
+                    </code></pre></figure><br>
+        <h3><u>CSS</u></h3>
+        <p>CSS, which stands for Cascading Style Sheets, is a crucial component in web development. It is a style
+            sheet language used to define the presentation and layout of HTML documents. CSS enables web developers
+            to control the appearance of web pages, including fonts, colors, margins, padding, and positioning of
+            elements.</p>
+        <p>The primary purpose of CSS is to separate the content (HTML) from its presentation (styling). This
+            separation allows developers to apply consistent styles across an entire website easily. Instead of
+            repeating styling instructions for each element on every page, CSS allows developers to define styles
+            once and apply them to multiple elements, resulting in more efficient and maintainable code.</p>
+        <p>By implementing CSS in web development, designers can create visually appealing and user-friendly
+            interfaces, ensuring a cohesive and professional look across different devices and browsers. CSS
+            empowers developers to customize the appearance of web pages to match the branding and design
+            requirements, providing an enhanced user experience for website visitors.</p>
+        <p>In summary, CSS is an essential tool for web developers to control the presentation and layout of web
+            pages, enabling them to create visually stunning, responsive, and well-organized websites that engage
+            users and convey information effectively.</p><br>
+        <h3><u>Common Elements on a WebPage</u></h3>
+        <h4>Text Fields</h4>
+        <p>Text fields are used to collect input from users, such as their names, email addresses, or messages. They
+            come in various forms, such as text, password, email, and text area.</p>
+        <h4>Popups/Modal Windows</h4>
+        <p>Popups or modal windows are used to display additional information or actions on top of the main content.
+            They are commonly used for login forms, notifications, or image galleries.</p>
+        <h4>Buttons and Links</h4>
+        <p>Buttons and links are interactive elements that allow users to navigate to different pages, submit forms,
+            or trigger actions.</p>
+        <h4>Images</h4>
+        <p>Images are used to enhance the visual appeal of a web page and convey information graphically.</p>
+        <h4>Lists</h4>
+        <p>HTML supports ordered (numbered) and unordered (bulleted) lists to organize information in a structured
+            manner.</p>
+        <h4>Tables</h4>
+        <p>Tables are used to present data in rows and columns, making it easier for users to comprehend
+            information.</p>
+        <h4>Forms</h4>
+        <p>Forms enable users to submit data to a server for processing. They include input fields, checkboxes,
+            radio buttons, and submit buttons.</p>
+        <h4>Headers and Paragraphs:</h4>
+        <p>Headers (h1-h6) are used to define the importance and hierarchy of text, while paragraphs (p) are used
+            for regular blocks of text.<p><br>
+    <div id="selectors">
+        <hr><h2>Selenium Selectors</h2><hr>
+            <p>  One of the key features of Selenium is its ability to locate and interact with HTML elements on a web
+                page using various selectors. In this paragraph, we will explore different types of Selenium selectors
+                along with their definitions and practical examples using Python.</p>
+        <h3>ID Selector</h3>
+            <p>The ID selector allows you to target an element with a specific unique identifier. The HTML element must
+                have an id attribute, which should be unique within the entire document.</p><br>
+            <figure>
+                <figcaption>HTML  element:</figcaption>
+                    <pre><code class="language-html">
+                        &lt;div id=&quot;myDiv&quot;&gt;This is a div with an ID&lt;/div&gt;
+                    </code></pre></figure><br>
+            <figure>
+                <figcaption>Selenium selector:</figcaption>
+                    <pre><code class="language-python">
+                        element = driver.find_element_by_id(&quot;myDiv&quot;)
+                    </code></pre></figure><br>
+        <h3>Class Name Selector</h3>
+            <p>The Class Name selector targets elements with a specific CSS class. Multiple elements can share the same
+            class name.</p><br>
+            <figure>
+                <figcaption>HTML  element:</figcaption>
+                    <pre><code class="language-html">
+                        &lt;div class=&quot;myClass&quot;&gt;This is a div with a class&lt;/div&gt;
+                    </code></pre></figure><br>
+            <figure>
+                <figcaption>Selenium selector:</figcaption>
+                    <pre><code class="language-python">
+                        element = driver.find_element_by_class_name(&quot;myClass&quot;)
+                    </code></pre></figure><br>
+        <h3>Name Selector</h3>
+            <p>The Name selector allows you to find elements by their name attribute. This is commonly used for form
+            fields.</p><br>
+            <figure>
+                <figcaption>HTML  element:</figcaption>
+                    <pre><code class="language-html">
+                        &lt;input type=&quot;text&quot; name=&quot;username&quot;&gt;
+                    </code></pre></figure><br>
+            <figure>
+                <figcaption>Selenium selector:</figcaption>
+                    <pre><code class="language-python">
+                        element = driver.find_element_by_name(&quot;username&quot;)
+                    </code></pre></figure><br>
+        <h3>Tag Name Selector</h3>
+            <p>The Tag Name selector targets elements based on their HTML tag name.</p><br>
+            <figure>
+                <figcaption>HTML  element:</figcaption>
+                    <pre><code class="language-html">
+                        &lt;div&gt;This is a div element&lt;/div&gt;
+                    </code></pre></figure><br>
+            <figure>
+                <figcaption>Selenium selector:</figcaption>
+                    <pre><code class="language-python">
+                        element = driver.find_element_by_tag_name("div")
+                    </code></pre></figure><br>
+        <h3>Link Text Selector</h3>
+            <p>The Link Text selector is used specifically for locating anchor (&lt;a&gt;) elements with the exact link
+                text.</p><br>
+            <figure>
+                <figcaption>HTML  element:</figcaption>
+                    <pre><code class="language-html">
+                        &lt;a href="https://www.example.com"&gt;Click Here&lt;/a&gt;
+                    </code></pre></figure><br>
+            <figure>
+                <figcaption>Selenium selector:</figcaption>
+                    <pre><code class="language-python">
+                        element = driver.find_element_by_link_text("Click Here")
+                    </code></pre></figure><br>
+        <h3>Partial Link Text Selector</h3>
+        <p>The Partial Link Text selector is used to find anchor elements containing the specified partial link
+            text.</p><br>
+        <figure>
+                <figcaption>HTML  element:</figcaption>
+                    <pre><code class="language-html">
+                        &lt;a href="https://www.example.com"&gt;Click Here to Visit Example&lt;/a&gt;
+                    </code></pre></figure><br>
+            <figure>
+                <figcaption>Selenium selector:</figcaption>
+                    <pre><code class="language-html">
+                        element = driver.find_element_by_partial_link_text("Visit Example")
+                    </code></pre></figure><br>
+        <h3>XPath Selector</h3>
+        <p>XPath is a powerful query language that allows you to navigate through XML and HTML documents. It is highly
+            versatile and capable of targeting elements with complex criteria.</p><br>
+            <figure>
+                <figcaption>HTML  element:</figcaption>
+                    <pre><code class="language-html">
+                        &lt;div id="myDiv"&gt;This is a div with an ID&lt;/div&gt;
+                    </code></pre></figure><br>
+            <figure>
+                <figcaption>Selenium selector:</figcaption>
+                    <pre><code class="language-python">
+                        element = driver.find_element_by_xpath("//div[@id='myDiv']")
+                    </code></pre></figure><br>
+        <h3>CSS Selector</h3>
+        <p>The CSS Selector uses CSS syntax to target elements on the web page</p><br>
+        <figure>
+                <figcaption>HTML  element:</figcaption>
+                    <pre><code class="language-html">
+                        &lt;div id="myDiv"&gt;This is a div with an ID&lt;/div&gt;
+                    </code></pre></figure><br>
+            <figure>
+                <figcaption>Selenium selector:</figcaption>
+                    <pre><code class="language-python">
+                        element = driver.find_element_by_css_selector("#myDiv")
+                    </code></pre></figure><br>
+        <hr>
     </div>
 </div>
-
-
 
 {% endblock %}

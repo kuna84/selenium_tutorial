@@ -10,61 +10,8 @@
 
 <meta charset="UTF-8">
 
-<style>
-    h1 {
-        text-align: center;
-    }
-
-    .tab {
-      display: none;
-
-      border: 1px solid #f1f1f1;
-    }
-
-    .tab.active {
-      display: block;
-    }
-
-    .tab-container {
-      background-color: #f1f1f1
-    }
-
-    .tab-buttons button {
-      width: 25%;
-      border: none;
-      background-color: #f1f1f1;
-      cursor: pointer;
-      padding: 14px 0;
-      transition: 0.3s;
-      margin-right: -5px;
-    }
-
-    .tab-buttons button:hover {
-      background-color: #ddd;
-    }
-
-    .tab-buttons button.active {
-      background-color: #ddd;
-    }
-</style>
-
-<script>
-    function openTab(tabName) {
-      var i, tabs, buttons;
-      tabs = document.getElementsByClassName("tab");
-      buttons = document.getElementsByClassName("tab-buttons")[0].getElementsByTagName("button");
-      for (i = 0; i < tabs.length; i++) {
-        tabs[i].classList.remove("active");
-        buttons[i].classList.remove("active");
-      }
-      document.getElementById(tabName).classList.add("active");
-      event.currentTarget.classList.add("active");
-    }
-
-    window.addEventListener('DOMContentLoaded', function() {
-      openTab('english-tab');
-    });
-</script>
+<link rel="stylesheet" href="{% static 'css/tabs.css' %}">
+<script src="{% static 'js/tabs.js' %}"></script>
 
 <h1>Agile Manifesto</h1>
 <div class="tab-buttons">

@@ -8,98 +8,24 @@
 
 {% block content %}
 
-<style>
-    .button-grid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        grid-gap: 10px;
-    }
-
-    .buttons {
-        display: inline-block;
-        padding: 10px 20px;
-        border-radius: 5px;
-        font-size: 16px;
-        text-align: center;
-        text-decoration: none;
-        transition: background-color 0.3s ease;
-    }
-
-    .primary-button {
-        background-color: #007bff;
-        color: #fff;
-    }
-
-    .secondary-button {
-        background-color: #6c757d;
-        color: #fff;
-    }
-
-    .success-button {
-        background-color: #28a745;
-        color: #fff;
-    }
-
-    .warning-button {
-        background-color: #ffc107;
-        color: #000;
-    }
-
-    .danger-button {
-        background-color: #dc3545;
-        color: #fff;
-    }
-
-    .info-button {
-        background-color: #17a2b8;
-        color: #fff;
-    }
-
-    .disabled-button {
-        background-color: #6c757d;
-        color: #fff;
-        pointer-events: none;
-        opacity: 0.6;
-    }
-
-    .rounded-button {
-        background-color: #800080;
-        color: #a569bd;
-        border-radius: 20px;
-        padding: 10px 10px;
-    }
-
-    .large-button {
-        font-size: 20px;
-        padding: 15px 30px;
-    }
-
-    .small-button {
-        font-size: 12px;
-        padding: 5px 10px;
-    }
-
-    .icon {
-        margin-right: 5px;
-    }
-</style>
+<link rel="stylesheet" href="{% static 'css/buttons.css' %}">
 <div class="button-container">
     <H2>Clicking on any of the buttons below will navigate you back to the Playground.</H2>
 
     <div class="button-grid">
-        <a class="buttons primary-button" href="#" onclick="history.back()">Primary Button</a>
-        <a class="buttons secondary-button" href="#" onclick="history.back()">Secondary Button</a>
-        <a class="buttons success-button" href="#" onclick="history.back()">Success Button</a>
-        <a class="buttons warning-button" href="#" onclick="history.back()" id="random-button-1">Warning Button</a>
-        <a class="buttons danger-button" href="#" onclick="history.back()" id="random-button-2">Danger Button</a>
-        <a class="buttons info-button" href="#" onclick="history.back()">Info Button</a>
-        <a class="buttons disabled-button" href="#" onclick="history.back()">Disabled Button</a>
-        <a class="buttons rounded-button" href="#" onclick="history.back()" id="random-button-3">Rounded Button</a>
-        <a class="buttons large-button" href="#" onclick="history.back()">Large Button</a>
-        <a class="buttons small-button" href="#" onclick="history.back()">Small Button</a>
-        <a class="buttons gradient-button" href="#" onclick="history.back()">Gradient Button</a>
-        <a class="buttons outline-button" href="#" onclick="history.back()">Outline Button</a>
-        <a class="buttons icon-button" href="#" onclick="history.back()">
+        <a class="buttons primary-button" href="/playground">Primary Button</a>
+        <a class="buttons secondary-button" href="/playground">Secondary Button</a>
+        <a class="buttons success-button" href="/playground">Success Button</a>
+        <a class="buttons warning-button" href="/playground" id="random-button-1">Warning Button</a>
+        <a class="buttons danger-button" href="/playground" id="random-button-2">Danger Button</a>
+        <a class="buttons info-button" href="/playground">Info Button</a>
+        <a class="buttons disabled-button" href="/playground">Disabled Button</a>
+        <a class="buttons rounded-button" href="/playground" id="random-button-3">Rounded Button</a>
+        <a class="buttons large-button" href="/playground">Large Button</a>
+        <a class="buttons small-button" href="/playground">Small Button</a>
+        <a class="buttons gradient-button" href="/playground">Gradient Button</a>
+        <a class="buttons outline-button" href="/playground">Outline Button</a>
+        <a class="buttons icon-button" href="/playground">
             <img class="icon" src="{% static 'images/button_1.png' %}" id="next_button"></a>
         <button class="buttons submit-button" type="submit" onclick="history.back()">Submit Button</button>
         <button class="buttons reset-button" type="reset" onclick="history.back()">Reset Button</button>

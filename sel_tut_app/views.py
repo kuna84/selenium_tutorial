@@ -53,45 +53,49 @@ def my_account_view(request):
     return render(request, 'sel_tut_app/myaccount.html')
 
 
-def text_fields(request):
+def text_fields_view(request):
     return render(request, 'sel_tut_app/text_fields.html')
 
 
-def video_player(request):
+def video_player_view(request):
     return render(request, 'sel_tut_app/video_player.html')
 
 
-def audio_player(request):
+def audio_player_view(request):
     return render(request, 'sel_tut_app/audio_player.html')
 
 
-def iframe(request):
+def iframe_view(request):
     return render(request, 'sel_tut_app/iframe.html')
 
 
-def form_1(request):
+def form_1_view(request):
     return render(request, 'sel_tut_app/form_1.html')
 
 
-def form_2(request):
+def form_2_view(request):
     return render(request, 'sel_tut_app/form_2.html')
 
 
-def accordion(request):
+def accordion_view(request):
     return render(request, 'sel_tut_app/accordion.html')
 
 
-def tabs(request):
+def tabs_view(request):
     return render(request, 'sel_tut_app/tabs.html')
 
 
-def sidenav(request):
+def sidenav_view(request):
     return render(request, 'sel_tut_app/sidenav.html')
 
 
-def table(request):
+def table_view(request):
     return render(request, 'sel_tut_app/table.html')
 
 
-def draggable(request):
+def draggable_view(request):
     return render(request, 'sel_tut_app/draggable.html')
+
+
+def delayed_view(request):
+    return render(request, 'sel_tut_app/delayed_content.html')

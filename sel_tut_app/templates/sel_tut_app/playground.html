@@ -8,31 +8,7 @@
 
 {% block content %}
 
-<style>
-    .grid-container {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-gap: 10px;
-        margin: 30px;
-    }
-
-    .grid-button {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        background-color: #84C184;
-        color: #fff;
-        padding: 40px 20px;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-    }
-
-    .grid-button:hover {
-        background-color: #72A672;
-    }
-</style>
+<link rel="stylesheet" href="{% static 'css/playground_grid.css' %}">
 
 <div class="grid-container">
    <a class="grid-button" href="{% url 'sel_tut_app:text_formats' %}">Text Formats</a>
@@ -52,5 +28,7 @@
    <a class="grid-button" href="{% url 'sel_tut_app:sidenav' %}">Side Navigation Menu</a>
    <a class="grid-button" href="{% url 'sel_tut_app:table' %}">Table</a>
    <a class="grid-button" href="{% url 'sel_tut_app:draggable' %}">Draggable</a>
+   <a class="grid-button" href="{% url 'sel_tut_app:delayed' %}">Delayed Content</a>
 </div>
+
 {% endblock %}

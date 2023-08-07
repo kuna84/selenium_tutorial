@@ -1,0 +1,53 @@
+{% extends 'sel_tut_app/playground_base.html' %}
+
+
+{% block title %}Delayed Content - Selenium Tutorial{% endblock %}
+
+{% block heading %}Delayed Content{% endblock %}
+
+{% block content %}
+
+<style>
+    .loader {
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #3498db;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 2s linear infinite;
+        margin: 50px auto;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+
+<div class="loader"></div>
+<div id="content" style="display: none;">
+    <h2>The content of the page displayed 5s. after launch:</h2>
+    <hr>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum facilisis nunc et orci
+        consectetur, et egestas libero tincidunt. Maecenas semper suscipit lectus vitae vestibulum.
+        Curabitur in tortor vel nunc iaculis scelerisque. Donec lacinia, metus vel scelerisque luctus,
+        tortor arcu bibendum dolor, id luctus velit ipsum quis purus. Proin facilisis tellus eu leo
+        eleifend iaculis. Duis ut quam nunc. Praesent varius magna eu tortor porttitor, eget dignissim
+        purus luctus. Integer facilisis lacus vitae libero facilisis, ut elementum mi dictum. Nullam
+        ut consequat odio. Vivamus rhoncus risus vel quam ullamcorper cursus.
+    </p>
+    <hr>
+</div>
+
+<script>
+    function showContent() {
+        document.getElementById("content").style.display = "block";
+        document.querySelector(".loader").style.display = "none";
+    }
+
+    setTimeout(showContent, 5000);
+</script>
+
+
+{% endblock %}
