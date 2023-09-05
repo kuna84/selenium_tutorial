@@ -12,7 +12,8 @@
         <li><a href="#about-selenium">   About Selenium</a></li>
         <li><a href="#webdriver">   WebDriver</a></li>
         <li><a href="#web-page-basics">   Webpage Basics</a></li>
-        <li><a href="#selectors">   Selenium Selectors</a></li>
+        <li><a href="#selectors">   Locating page elements</a></li>
+        <li><a href="#pop">   Page Object Pattern</a></li>
     </ul>
 </div>
 <div class="content">
@@ -100,7 +101,6 @@
             development. In this chapter, we will explore the main building blocks of HTML, including divs, and
             examine various elements commonly found on a web page.</p><br>
         <h3>Structure Elements:</h3>
-        <div class="code-container">
             <h4>Document Type Declaration (DTD)</h4>
             <figure>
                 <figcaption>The DTD is the first line of an HTML document and specifies the version of HTML being
@@ -109,8 +109,6 @@
                         &lt;!DOCTYPE html&gt;
                     </code></pre>
             </figure>
-        </div>
-        <div class="code-container">
             <h4>HTML Element</h4>
             <figure>
                 <figcaption>The root element of the entire page that encloses all other elements. It is usually
@@ -119,8 +117,6 @@
                         &lt;html lang="en"&gt;
                     </code></pre>
             </figure>
-        </div>
-        <div class="code-container">
             <h4>Head</h4>
             <figure>
                 <figcaption>The head element contains meta-information about the web page, such as the title,
@@ -134,8 +130,6 @@
                         &lt;/head&gt;
                     </code></pre>
             </figure>
-        </div>
-        <div class="code-container">
             <h4>Body</h4>
             <figure>
                 <figcaption>The body element contains the visible content of the web page, including text, images,
@@ -165,10 +159,9 @@
                         &lt;/body&gt;
                     </code></pre>
             </figure>
-        </div>
         <br>
         <h3><u>Div</u></h3>
-        <p>Div, short for „division", is generic containers used to group and structure content on a web page.
+        <p>Div, short for „division", is generic container used to group and structure content on a web page.
             Divs act as building blocks for layout and styling, allowing developers to apply CSS styles to groups of
             elements collectively. Divs have no inherent meaning and are often given class or ID attributes to
             target them with CSS or JavaScript</p>
@@ -193,7 +186,7 @@
         <p>In summary, CSS is an essential tool for web developers to control the presentation and layout of web
             pages, enabling them to create visually stunning, responsive, and well-organized websites that engage
             users and convey information effectively.</p><br>
-        <h3><u>Common Elements on a WebPage</u></h3>
+        <h3><u>Common Elements on a Webpage</u></h3>
         <h4>Text Fields</h4>
         <p>Text fields are used to collect input from users, such as their names, email addresses, or messages. They
             come in various forms, such as text, password, email, and text area.</p>
@@ -216,13 +209,19 @@
             radio buttons, and submit buttons.</p>
         <h4>Headers and Paragraphs:</h4>
         <p>Headers (h1-h6) are used to define the importance and hierarchy of text, while paragraphs (p) are used
-            for regular blocks of text.<p><br>
+            for regular blocks of text.</p><br>
+    </div>
     <div id="selectors">
-        <hr><h2>Selenium Selectors</h2><hr>
-            <p>  One of the key features of Selenium is its ability to locate and interact with HTML elements on a web
+        <hr><h2>Locating elements on the Webpage</h2><hr>
+            <p> One of the key features of Selenium is its ability to locate and interact with HTML elements on a web
                 page using various selectors. In this paragraph, we will explore different types of Selenium selectors
                 along with their definitions and practical examples using Python.</p>
-        <h3>ID Selector</h3>
+            <p>Selenium provides the following method to locate elements in a page:
+           <code class="language-python">find_element</code><br>
+            To find multiple elements (return a list of elements):
+           <code class="language-python">find_elements</code></p><br>
+        <h3><u>Methods of locating elements on a web page:</u></h3>
+        <h4>Locating by ID</h4>
             <p>The ID selector allows you to target an element with a specific unique identifier. The HTML element must
                 have an id attribute, which should be unique within the entire document.</p><br>
             <figure>
@@ -233,9 +232,9 @@
             <figure>
                 <figcaption>Selenium selector:</figcaption>
                     <pre><code class="language-python">
-                        element = driver.find_element_by_id(&quot;myDiv&quot;)
+                        element = driver.find_element(By.ID, &quot;myDiv&quot;)
                     </code></pre></figure><br>
-        <h3>Class Name Selector</h3>
+        <h4>Locating by Class Name</h4>
             <p>The Class Name selector targets elements with a specific CSS class. Multiple elements can share the same
             class name.</p><br>
             <figure>
@@ -246,9 +245,9 @@
             <figure>
                 <figcaption>Selenium selector:</figcaption>
                     <pre><code class="language-python">
-                        element = driver.find_element_by_class_name(&quot;myClass&quot;)
+                        element = driver.find_element(By.CLASS_NAME, &quot;myClass&quot;)
                     </code></pre></figure><br>
-        <h3>Name Selector</h3>
+        <h4>Locating by  Name</h4>
             <p>The Name selector allows you to find elements by their name attribute. This is commonly used for form
             fields.</p><br>
             <figure>
@@ -259,9 +258,9 @@
             <figure>
                 <figcaption>Selenium selector:</figcaption>
                     <pre><code class="language-python">
-                        element = driver.find_element_by_name(&quot;username&quot;)
+                        element = driver.find_element(By.NAME, &quot;username&quot;)
                     </code></pre></figure><br>
-        <h3>Tag Name Selector</h3>
+        <h4>Locating by Tag Name</h4>
             <p>The Tag Name selector targets elements based on their HTML tag name.</p><br>
             <figure>
                 <figcaption>HTML  element:</figcaption>
@@ -271,60 +270,109 @@
             <figure>
                 <figcaption>Selenium selector:</figcaption>
                     <pre><code class="language-python">
-                        element = driver.find_element_by_tag_name("div")
+                        element = driver.find_element(By.TAG_NAME, "div")
                     </code></pre></figure><br>
-        <h3>Link Text Selector</h3>
+        <h3>Locating by Link Text</h3>
             <p>The Link Text selector is used specifically for locating anchor (&lt;a&gt;) elements with the exact link
                 text.</p><br>
             <figure>
                 <figcaption>HTML  element:</figcaption>
                     <pre><code class="language-html">
                         &lt;a href="https://www.example.com"&gt;Click Here&lt;/a&gt;
-                    </code></pre></figure><br>
+                    </code></pre>
+            </figure><br>
             <figure>
                 <figcaption>Selenium selector:</figcaption>
                     <pre><code class="language-python">
-                        element = driver.find_element_by_link_text("Click Here")
-                    </code></pre></figure><br>
-        <h3>Partial Link Text Selector</h3>
+                        element = driver.find_element(By.LINK_TEXT, "Click Here")
+                    </code></pre>
+            </figure><br>
+        <h4>Locating by Partial Link Text</h4>
         <p>The Partial Link Text selector is used to find anchor elements containing the specified partial link
             text.</p><br>
-        <figure>
+            <figure>
                 <figcaption>HTML  element:</figcaption>
                     <pre><code class="language-html">
                         &lt;a href="https://www.example.com"&gt;Click Here to Visit Example&lt;/a&gt;
-                    </code></pre></figure><br>
+                    </code></pre>
+            </figure><br>
             <figure>
                 <figcaption>Selenium selector:</figcaption>
                     <pre><code class="language-html">
-                        element = driver.find_element_by_partial_link_text("Visit Example")
-                    </code></pre></figure><br>
-        <h3>XPath Selector</h3>
+                        element = driver.find_element(By.PARTIAL_LINK_TEXT, "Visit Example")
+                    </code></pre>
+            </figure><br>
+        <h4>Locating by XPath</h4>
         <p>XPath is a powerful query language that allows you to navigate through XML and HTML documents. It is highly
             versatile and capable of targeting elements with complex criteria.</p><br>
             <figure>
                 <figcaption>HTML  element:</figcaption>
                     <pre><code class="language-html">
                         &lt;div id="myDiv"&gt;This is a div with an ID&lt;/div&gt;
-                    </code></pre></figure><br>
+                    </code></pre>
+            </figure><br>
             <figure>
                 <figcaption>Selenium selector:</figcaption>
                     <pre><code class="language-python">
-                        element = driver.find_element_by_xpath("//div[@id='myDiv']")
-                    </code></pre></figure><br>
-        <h3>CSS Selector</h3>
+                        element = driver.find_element(By.XPATH, "//div[@id='myDiv']")
+                    </code></pre>
+            </figure><br>
+        <h4>Locating by CSS</h4>
         <p>The CSS Selector uses CSS syntax to target elements on the web page</p><br>
-        <figure>
-                <figcaption>HTML  element:</figcaption>
-                    <pre><code class="language-html">
-                        &lt;div id="myDiv"&gt;This is a div with an ID&lt;/div&gt;
-                    </code></pre></figure><br>
+            <figure>
+                    <figcaption>HTML  element:</figcaption>
+                        <pre><code class="language-html">
+                            &lt;div id="myDiv"&gt;This is a div with an ID&lt;/div&gt;
+                        </code></pre>
+            </figure><br>
             <figure>
                 <figcaption>Selenium selector:</figcaption>
                     <pre><code class="language-python">
-                        element = driver.find_element_by_css_selector("#myDiv")
-                    </code></pre></figure><br>
-        <hr>
+                        element = driver.find_element(By.CSS_SELECTOR, "#myDiv")
+                    </code></pre>
+            </figure><br>
+    </div>
+    <div id="pop">
+        <hr><h2>Page Object Pattern</h2><hr>
+        <p>Page Object Pattern is a design pattern that is used in automated testing of web applications. It is a way to
+            organize your test code so that it is more readable, maintainable, and extendable. It promotes the
+            separation of test code and page-specific code, resulting in a clear and modular test structure. In essence,
+            it encapsulates the functionality and elements of a web page into a separate class, allowing testers to
+            interact with the application's user interface through a higher-level, business-focused API.</p>
+        <h3><u>Key Benefits</u></h3>
+        <h4>Modularity</h4>
+        <p>By encapsulating the interactions with each page in separate classes, the test code becomes more modular and
+            organized. This modular approach makes it easier to manage and update tests as the application evolves.</p>
+        <h4>Readability</h4>
+        <p>Page Object classes abstract away the technical details of interacting with elements and actions on a web
+            page. Test cases become more readable and business-focused, enhancing collaboration between testers,
+            developers, and other stakeholders.</p>
+        <h4>Reusability</h4>
+        <p>Page Object classes can be reused across multiple test cases, reducing duplication of code. If a change
+            occurs on a page, it only requires updating the relevant Page Object class, minimizing the impact on test
+            scripts.</p>
+        <h4>Easy Maintenance</h4>
+        <p>When the structure or layout of a web page changes, you only need to update the corresponding Page Object
+            class, rather than modifying each individual test case. This significantly reduces maintenance efforts.</p>
+        <h3><u>Implementing the Page Object Pattern</u></h3>
+        <p>Implementing the Page Object Pattern involves creating a separate class for each page in your application.
+            This class should encapsulate the page's elements, actions, and interactions. Here's a general outline of
+            how to create a Page Object:</p>
+        <h4>Create a Page Object Class</h4>
+        <p>Define a class for each page, with methods representing the actions a user can take on that page.</p>
+        <h4>Encapsulate Elements</h4>
+        <p>Within the Page Object class, define methods that locate and interact with the elements on the page. These
+            methods should return instances of the elements, abstracting away the details of element location.</p>
+        <h4>Business-Focused Method</h4>
+        <p>Create methods that represent high-level actions a user can perform on the page. These methods should utilize
+            the encapsulated element methods to perform actions like submitting forms, clicking buttons, etc.</p>
+        <h3><u>Conclusion</u></h3>
+        <p>The Page Object Pattern is a powerful technique that promotes better organization, maintainability, and
+            readability of automated test scripts. By encapsulating page interactions and abstracting away technical
+            details, testers can focus on writing business-focused tests that accurately reflect the application's
+            behavior. Adopting the Page Object Pattern can lead to more efficient test maintenance, reduced code
+            duplication, and improved collaboration between testing and development teams, ultimately contributing to
+            higher software quality.</p><br><hr>
     </div>
 </div>
 
